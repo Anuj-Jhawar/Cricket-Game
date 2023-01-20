@@ -66,20 +66,6 @@ public class CricketGameTest {
         return NumberofOversInGame;
     }
 
-    static char AssignBallOutcome(){
-        /*
-            Assigning the outcome of the ball.
-        */
-        int BallOutcome = (int) (Math.random()*8);
-        if(BallOutcome==7){
-            return 'W';
-        }
-        else {
-             return (char) (BallOutcome+'0');
-        }
-
-    }
-
     static Team AssignBattingTeam(CricketGame Game, int i){
         /*
             Assigning the batting team for the inning.
