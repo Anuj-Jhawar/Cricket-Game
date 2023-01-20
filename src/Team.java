@@ -1,5 +1,5 @@
 public class Team {
-    String Name;
+    private String Name;
     Player[] Players = new Player[11];
 
     Team(){
@@ -7,6 +7,15 @@ public class Team {
             Players[i] = new Player();
         }
     }
+
+    String GetTeamName(){
+        return Name;
+    }
+
+    void SetTeamName(String NameForTeam){
+        Name = NameForTeam;
+    }
+
     int RunScored;
 
 }

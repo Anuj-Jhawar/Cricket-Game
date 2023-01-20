@@ -5,16 +5,16 @@ public class CricketGameTest {
             Initialize the venue for the game.
         */
         System.out.println("Please Enter the Venue of the Game");
-        Game.Venue = scn.nextLine();
+        Game.SetVenueForTheGame(scn.nextLine());
     }
     static void TakeTeamNameInput(CricketGame Game, Scanner scn){
         /*
             Take name of teams as input and assign them respectively.
         */
         System.out.println("Please Enter Team1 name.");
-        Game.Team1.Name = scn.nextLine();
+        Game.Team1.SetTeamName(scn.nextLine());
         System.out.println("Please Enter Team2 name");
-        Game.Team2.Name = scn.nextLine();
+        Game.Team2.SetTeamName(scn.nextLine());
     }
     static String CompleteToss(CricketGame Game){
         /*
@@ -30,7 +30,7 @@ public class CricketGameTest {
         */
         System.out.println("Please Enter the format of the Game from the following:");
         System.out.println("T10, T20, ODI");
-        Game.Format = scn.nextLine();
+        Game.SetFormatForTheGame(scn.nextLine());
     }
     static void InitializeTeamWithPlayersInputs(Team CurrentTeam, Scanner scn){
         /*
@@ -38,7 +38,7 @@ public class CricketGameTest {
         */
         for(int i = 0;i<11;i++) {
             System.out.println("Please Enter Player " + (i+1) + " Name");
-            CurrentTeam.Players[i].Name = scn.nextLine();
+            CurrentTeam.Players[i].SetName(scn.nextLine());
         }
     }
     static void InitializeBothTheTeams(CricketGame Game, Scanner scn){
@@ -56,9 +56,10 @@ public class CricketGameTest {
             Decide number of overs based on the format of the game.
         */
         int NumberofOversInGame = 0;
-        if(Game.Format == "T10"){
+        String Format = Game.GetFormat();
+        if(Format == "T10"){
             NumberofOversInGame = 10;
-        } else if(Game.Format == "T20") {
+        } else if(Format == "T20") {
             NumberofOversInGame = 20;
         }else{
             NumberofOversInGame = 50;
@@ -80,6 +81,7 @@ public class CricketGameTest {
             Function in which all the game happens.
         */
         int NumberOfOversInGame = 0;
+        int target = -1;
         NumberOfOversInGame = InitializeNumberOfOvers(Game);
         for(int i = 0;i<2;i++){
             //int BatsmanNumber1 = 0;
@@ -91,21 +93,24 @@ public class CricketGameTest {
                 for(int k = 0;k<6;k++){
                     Ball NewBall = new Ball();
                     NewBall.AssignBallOutcome();
-                    Game.Umpire.Signal(NewBall.OutcomeOfTheBall);
+                    Game.Umpire.Signal(NewBall.GetOutcomeOfTheBall());
                     //System.out.println("Ball outcome is " + NewBall.OutcomeOfTheBall);
-                    if(NewBall.OutcomeOfTheBall=='W')
+                    if(NewBall.GetOutcomeOfTheBall()=='W')
                         Wickets += 1;
                     else
-                        NewTeam.RunScored += (NewBall.OutcomeOfTheBall - '0');
+                        NewTeam.RunScored += (NewBall.GetOutcomeOfTheBall() - '0');
+                    if(target != -1 && NewTeam.RunScored > target)
+                        break;
                     if(Wickets==10)
                         break;
                 }
             }
+            target = NewTeam.RunScored;
         }
         if(Game.Team1.RunScored > Game.Team2.RunScored)
-            Game.Winner = Game.Team1.Name;
+            Game.SetWinner(Game.Team1.GetTeamName());
         else
-            Game.Winner = Game.Team2.Name;
+            Game.SetWinner(Game.Team2.GetTeamName());
     }
 
     public static void main(String[] args) {
@@ -120,6 +125,6 @@ public class CricketGameTest {
         System.out.println("Toss won by" + TeamWhoWonTheToss);
         System.out.println(TeamWhoWonTheToss + " decided to bat first");
         LetsPlayTheGame(Game);
-        System.out.println("Team Who won the match is " + Game.Winner);
+        System.out.println("Team Who won the match is " + Game.GetWinner());
     }
 }

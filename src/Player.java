@@ -1,5 +1,5 @@
 public class Player {
-    String Name;
+    private String Name;
     int Score;
     int RunConceded;
     int WicketsTaken;
@@ -9,4 +9,9 @@ public class Player {
     double BattingAverage;
     double BowlingStrikeRate;
     double BowlingAverage;
+
+    void SetName(String name){
+        Name = name;
+    }
+
 }

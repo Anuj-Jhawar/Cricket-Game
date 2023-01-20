@@ -1,6 +1,6 @@
 import java.lang.Math;
 public class Toss {
-    String TeamWhoWonThetoss;
+    private String TeamWhoWonThetoss;
     String CallForToss(){
         /*
             Function which decides which team have won the toss.

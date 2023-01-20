@@ -1,9 +1,9 @@
 public class Ball {
-    char OutcomeOfTheBall;
-    String BatsmanName;
-    String BowlerName;
-    String FielderName;
-    boolean IsANoBall;
+    private char OutcomeOfTheBall;
+    private String BatsmanName;
+    private String BowlerName;
+    private String FielderName;
+    private boolean IsANoBall;
 
     Ball(){
         OutcomeOfTheBall = 'N';
@@ -24,6 +24,10 @@ public class Ball {
         else {
             OutcomeOfTheBall =  (char) (BallOutcome+'0');
         }
+    }
+
+    char GetOutcomeOfTheBall(){
+        return OutcomeOfTheBall;
     }
 
 }
