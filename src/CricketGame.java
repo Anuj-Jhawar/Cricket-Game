@@ -6,19 +6,24 @@ public class CricketGame {
     Toss TossForGame = new Toss();
     private String Format;
     Umpire Umpire = new Umpire();
-    void SetVenueForTheGame(String VenueName){
+
+    void SetVenueForTheGame(String VenueName) {
         Venue = VenueName;
     }
-    void SetFormatForTheGame(String FormatType){
+
+    void SetFormatForTheGame(String FormatType) {
         Format = FormatType;
     }
-    String GetFormat(){
+
+    String GetFormat() {
         return Format;
     }
-    void SetWinner(String WinningTeam){
+
+    void SetWinner(String WinningTeam) {
         Winner = WinningTeam;
     }
-    String GetWinner(){
+
+    String GetWinner() {
         return Winner;
     }
 }

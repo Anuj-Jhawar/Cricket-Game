@@ -5,7 +5,7 @@ public class Ball {
     private String FielderName;
     private boolean IsANoBall;
 
-    Ball(){
+    Ball() {
         OutcomeOfTheBall = 'N';
         BatsmanName = "Not defined";
         BowlerName = "Not defined";
@@ -13,20 +13,19 @@ public class Ball {
         IsANoBall = false;
     }
 
-    void AssignBallOutcome(){
+    void AssignBallOutcome() {
         /*
             Assigning the outcome of the ball.
         */
-        int BallOutcome = (int) (Math.random()*8);
-        if(BallOutcome==7){
+        int BallOutcome = (int) (Math.random() * 8);
+        if (BallOutcome == 7) {
             OutcomeOfTheBall = 'W';
-        }
-        else {
-            OutcomeOfTheBall =  (char) (BallOutcome+'0');
+        } else {
+            OutcomeOfTheBall = (char) (BallOutcome + '0');
         }
     }
 
-    char GetOutcomeOfTheBall(){
+    char GetOutcomeOfTheBall() {
         return OutcomeOfTheBall;
     }
 

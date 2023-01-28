@@ -2,20 +2,24 @@ public class Team {
     private String Name;
     Player[] Players = new Player[11];
 
+    int RunsScored;
+    int RunsConceded;
+    int WicketsFallen;
+    int WicketsTaken;
     Team(){
-        for(int i = 0;i<11;i++){
-            Players[i] = new Player();
-        }
+        RunsScored = 0;
+        RunsConceded = 0;
+        WicketsFallen = 0;
+        WicketsTaken = 0;
     }
 
-    String GetTeamName(){
+    String GetTeamName() {
         return Name;
     }
 
-    void SetTeamName(String NameForTeam){
+    void SetTeamName(String NameForTeam) {
         Name = NameForTeam;
     }
 
-    int RunScored;
 
 }

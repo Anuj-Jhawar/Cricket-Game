@@ -1,5 +1,7 @@
 import java.util.Scanner;
+
 public class CricketGameTest {
+    static PlayerFactory playerFactory = new PlayerFactory();
     static void InitializeVenueForTheGame(CricketGame Game, Scanner scn) {
         /*
             Initialize the venue for the game.
@@ -7,7 +9,8 @@ public class CricketGameTest {
         System.out.println("Please Enter the Venue of the Game");
         Game.SetVenueForTheGame(scn.nextLine());
     }
-    static void TakeTeamNameInput(CricketGame Game, Scanner scn){
+
+    static void TakeTeamNameInput(CricketGame Game, Scanner scn) {
         /*
             Take name of teams as input and assign them respectively.
         */
@@ -16,7 +19,8 @@ public class CricketGameTest {
         System.out.println("Please Enter Team2 name");
         Game.Team2.SetTeamName(scn.nextLine());
     }
-    static String CompleteToss(CricketGame Game){
+
+    static String CompleteToss(CricketGame Game) {
         /*
             Function to complete the toss for the game.
         */
@@ -24,7 +28,8 @@ public class CricketGameTest {
         String TeamWhoWonTheToss = Game.TossForGame.CallForToss();
         return TeamWhoWonTheToss;
     }
-    static void TakeFormatInput(CricketGame Game, Scanner scn){
+
+    static void TakeFormatInput(CricketGame Game, Scanner scn) {
         /*
             Function to take format of the game as an input.
         */
@@ -32,23 +37,29 @@ public class CricketGameTest {
         System.out.println("T10, T20, ODI");
         Game.SetFormatForTheGame(scn.nextLine());
     }
-    static void InitializeTeamWithPlayersInputs(Team CurrentTeam, Scanner scn){
+
+    static void InitializeTeamWithPlayersInputs(Team CurrentTeam, Scanner scn) {
         /*
             Initialize the teams with player details as per input.
         */
-        for(int i = 0;i<11;i++) {
-            System.out.println("Please Enter Player " + (i+1) + " Name");
-            CurrentTeam.Players[i].SetName(scn.nextLine());
+        for (int i = 0; i < 11; i++) {
+            System.out.println("Please Enter Player " + (i + 1) + " Name");
+            String name = scn.nextLine();
+            System.out.println("Please Enter Player " + (i + 1) + " type");
+            String type = scn.nextLine();
+            CurrentTeam.Players[i] = playerFactory.getPlayer(type);
+            CurrentTeam.Players[i].SetName(name);
         }
     }
-    static void InitializeBothTheTeams(CricketGame Game, Scanner scn){
+
+    static void InitializeBothTheTeams(CricketGame Game, Scanner scn) {
         /*
             Initialize both the teams with player inputs.
         */
         System.out.println("Initializing Team1");
-        InitializeTeamWithPlayersInputs(Game.Team1,scn);
+        InitializeTeamWithPlayersInputs(Game.Team1, scn);
         System.out.println("Initializing Team2");
-        InitializeTeamWithPlayersInputs(Game.Team2,scn);
+        InitializeTeamWithPlayersInputs(Game.Team2, scn);
     }
 
     static int InitializeNumberOfOvers(CricketGame Game) {
@@ -57,21 +68,21 @@ public class CricketGameTest {
         */
         int NumberofOversInGame = 0;
         String Format = Game.GetFormat();
-        if(Format == "T10"){
+        if (Format == "T10") {
             NumberofOversInGame = 10;
-        } else if(Format == "T20") {
+        } else if (Format == "T20") {
             NumberofOversInGame = 20;
-        }else{
+        } else {
             NumberofOversInGame = 50;
         }
         return NumberofOversInGame;
     }
 
-    static Team AssignBattingTeam(CricketGame Game, int i){
+    static Team AssignBattingTeam(CricketGame Game, int i) {
         /*
             Assigning the batting team for the inning.
         */
-        if(i==0)
+        if (i == 0)
             return Game.Team1;
         return Game.Team2;
     }
@@ -83,31 +94,31 @@ public class CricketGameTest {
         int NumberOfOversInGame = 0;
         int target = -1;
         NumberOfOversInGame = InitializeNumberOfOvers(Game);
-        for(int i = 0;i<2;i++){
+        for (int i = 0; i < 2; i++) {
             //int BatsmanNumber1 = 0;
             //int BatsmanNumber2 = 1;
             //int Bowler = 10;
-            Team NewTeam = AssignBattingTeam(Game,i);
+            Team NewTeam = AssignBattingTeam(Game, i);
             int Wickets = 0;
-            for(int j = 0;j<NumberOfOversInGame;j++){
-                for(int k = 0;k<6;k++){
+            for (int j = 0; j < NumberOfOversInGame; j++) {
+                for (int k = 0; k < 6; k++) {
                     Ball NewBall = new Ball();
                     NewBall.AssignBallOutcome();
                     Game.Umpire.Signal(NewBall.GetOutcomeOfTheBall());
                     //System.out.println("Ball outcome is " + NewBall.OutcomeOfTheBall);
-                    if(NewBall.GetOutcomeOfTheBall()=='W')
+                    if (NewBall.GetOutcomeOfTheBall() == 'W')
                         Wickets += 1;
                     else
-                        NewTeam.RunScored += (NewBall.GetOutcomeOfTheBall() - '0');
-                    if(target != -1 && NewTeam.RunScored > target)
+                        NewTeam.RunsScored += (NewBall.GetOutcomeOfTheBall() - '0');
+                    if (target != -1 && NewTeam.RunsScored > target)
                         break;
-                    if(Wickets==10)
+                    if (Wickets == 10)
                         break;
                 }
             }
-            target = NewTeam.RunScored;
+            target = NewTeam.RunsScored;
         }
-        if(Game.Team1.RunScored > Game.Team2.RunScored)
+        if (Game.Team1.RunsScored > Game.Team2.RunsScored)
             Game.SetWinner(Game.Team1.GetTeamName());
         else
             Game.SetWinner(Game.Team2.GetTeamName());
@@ -116,11 +127,11 @@ public class CricketGameTest {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         CricketGame Game = new CricketGame();
-        InitializeVenueForTheGame(Game,scn);
-        TakeFormatInput(Game , scn);
+        InitializeVenueForTheGame(Game, scn);
+        TakeFormatInput(Game, scn);
         System.out.println("Game Start");
-        TakeTeamNameInput(Game,scn);
-        InitializeBothTheTeams(Game,scn);
+        TakeTeamNameInput(Game, scn);
+        InitializeBothTheTeams(Game, scn);
         String TeamWhoWonTheToss = CompleteToss(Game);
         System.out.println("Toss won by" + TeamWhoWonTheToss);
         System.out.println(TeamWhoWonTheToss + " decided to bat first");

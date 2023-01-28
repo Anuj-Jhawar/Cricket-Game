@@ -1,17 +1,35 @@
-public class Bowler extends Player{
+public class Bowler extends Player {
     int RunConceded;
 
-    int WicketTaken;
+    int Wickets;
 
-    double OversBowled;
+    double BallsBowled;
 
-    double StrikeRate;
+    double BowlingStrikeRate;
 
-    double Average;
+    double BowlingAverage;
 
     Bowler(){
         RunConceded = 0;
-        WicketTaken = 0;
-        OversBowled = 0;
+        Wickets = 0;
+        BallsBowled = 0;
+        BowlingAverage = 0.0;
+        BowlingStrikeRate = 0.0;
+    }
+
+    public void updateBowlingAverage(){
+        BowlingAverage = (RunConceded*1.0)/(Wickets);
+    }
+    public void updateWickets(){
+        Wickets++;
+    }
+    public void updateBowlingStrikeRate(){
+        BowlingStrikeRate = (BallsBowled*1.0)/Wickets;
+    }
+    public void updateRunsConceded(int run){
+        RunConceded += run;
+    }
+    public void updateBallsBowled(){
+        BallsBowled++;
     }
 }
