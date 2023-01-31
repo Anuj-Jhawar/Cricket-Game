@@ -1,4 +1,4 @@
-public class AllRounder extends Player{
+public class AllRounder extends Player implements UpdatingBowlingStats{
     int RunConceded;
 
     int Wickets;
@@ -35,5 +35,14 @@ public class AllRounder extends Player{
     }
     public void updateBallsBowled(){
         BallsBowled++;
+    }
+    public void UpdateBowlingStats(String OutcomeOfTheBall){
+        updateBallsBowled();
+        if(OutcomeOfTheBall=="W")
+            updateWickets();
+        else
+            updateRunsConceded(Integer.getInteger(OutcomeOfTheBall));
+        updateBowlingAverage();
+        updateBowlingStrikeRate();
     }
 }

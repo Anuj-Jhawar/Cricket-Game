@@ -1,9 +1,9 @@
-public class Bowler extends Player {
+public class Bowler extends Player implements UpdatingBowlingStats{
     int RunConceded;
 
     int Wickets;
 
-    double BallsBowled;
+    int BallsBowled;
 
     double BowlingStrikeRate;
 
@@ -31,5 +31,27 @@ public class Bowler extends Player {
     }
     public void updateBallsBowled(){
         BallsBowled++;
+    }
+    int getRunConceded(){
+        return RunConceded;
+    }
+    int getBallsBowled(){
+        return BallsBowled;
+    }
+    int getWickets(){
+        return Wickets;
+    }
+    public void UpdateBowlingStats(String OutcomeOfTheBall){
+        /*
+            Function to invoke all the batting stats of the bowler.
+        */
+        updateBallsBowled();
+        String Wicket = "W";
+        if(OutcomeOfTheBall.equals(Wicket))
+            updateWickets();
+        else
+            updateRunsConceded(Integer.parseInt(OutcomeOfTheBall));
+        updateBowlingAverage();
+        updateBowlingStrikeRate();
     }
 }

@@ -17,15 +17,25 @@ public class Ball {
         /*
             Assigning the outcome of the ball.
         */
-        int BallOutcome = (int) (Math.random() * 8);
-        if (BallOutcome == 7) {
+        int BallOutcome = (int) (Math.random() * 100);
+        if (BallOutcome >= 95) {
             OutcomeOfTheBall = 'W';
         } else {
-            OutcomeOfTheBall = (char) (BallOutcome + '0');
+            OutcomeOfTheBall = (char) ((BallOutcome/17) + '0');
         }
     }
 
+    void setOutcomeOfTheBall(char DesiredOutcomeOfTheBall){
+        /*
+            Setting pre-defined outcome for the ball
+        */
+        OutcomeOfTheBall = DesiredOutcomeOfTheBall;
+    }
+
     char GetOutcomeOfTheBall() {
+        /*
+            Returning the outcome of the ball.
+        */
         return OutcomeOfTheBall;
     }
 

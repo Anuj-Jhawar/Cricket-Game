@@ -1,7 +1,7 @@
 import java.lang.Math;
 
 public class Toss {
-    private String TeamWhoWonThetoss;
+    private String TeamWhoWonTheToss;
 
     String CallForToss() {
         /*
@@ -10,8 +10,11 @@ public class Toss {
         double value = Math.random();
         int tossValue = (int) (value * 2);
         if (tossValue == 0)
-            return TeamWhoWonThetoss = "Team1";
+            return TeamWhoWonTheToss = "Team1";
         else
-            return TeamWhoWonThetoss = "Team2";
+            return TeamWhoWonTheToss = "Team2";
+    }
+    String getTeamWhoWonTheToss(){
+        return TeamWhoWonTheToss;
     }
 }

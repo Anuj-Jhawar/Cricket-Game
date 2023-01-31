@@ -3,10 +3,8 @@ public class PlayerFactory {
         switch (type){
             case "Batsman":
                 return new Batsman();
-            case "Bowler":
-                return new Bowler();
             default:
-                return new AllRounder();
+                return new Bowler();
         }
     }
 }
