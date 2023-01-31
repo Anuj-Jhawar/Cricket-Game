@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-
-public class BattingScoreCard implements InningScoreCard{
+public class BattingScoreCard implements InningScoreCard {
     Player[] BattingStats = new Player[11];
 
-    BattingScoreCard(Team BattingTeam){
+    BattingScoreCard(Team BattingTeam) {
         BattingStats = BattingTeam.Players;
     }
 
-    void PrintHeadings(){
+    void PrintHeadings() {
         /*
             Printing the headers for the Batting part of the scorecard.
         */
@@ -17,17 +15,18 @@ public class BattingScoreCard implements InningScoreCard{
         String Fours = "4s";
         String Sixes = "6s";
         String StrikeRate = "S.R.";
-        System.out.printf("%-20s %10s %10s %10s %10s %10.6s %n",BatsmanNames,Runs,Balls,Fours,Sixes,StrikeRate);
+        System.out.printf("%-20s %10s %10s %10s %10s %10.6s %n", BatsmanNames, Runs, Balls, Fours, Sixes, StrikeRate);
     }
-    public void ShowStats(){
+
+    public void ShowStats() {
         /*
             Printing the batting part of the scorecard.
         */
         PrintHeadings();
-        for(Player Batsman : BattingStats){
-            if(Batsman.BallsPlayed>0){
-                System.out.printf("%-20s %10s %10s %10s %10s %10.2f %n",Batsman.getName(),Batsman.getScore(),Batsman.getBallsPlayed(),
-                        Batsman.getNumberOfFours(),Batsman.getNumberOfSixes(),Batsman.getBattingStrikeRate());
+        for (Player Batsman : BattingStats) {
+            if (Batsman.BallsPlayed > 0) {
+                System.out.printf("%-20s %10s %10s %10s %10s %10.2f %n", Batsman.getName(), Batsman.getScore(), Batsman.getBallsPlayed(),
+                        Batsman.getNumberOfFours(), Batsman.getNumberOfSixes(), Batsman.getBattingStrikeRate());
             }
         }
 

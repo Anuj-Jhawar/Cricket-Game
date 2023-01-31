@@ -1,11 +1,11 @@
 public class CricketGame {
-    private String Venue;
-    private String Winner;
     Team Team1 = new Team();
     Team Team2 = new Team();
     Toss TossForGame = new Toss();
-    private String Format;
     Umpire Umpire = new Umpire();
+    private String Venue;
+    private String Winner;
+    private String Format;
 
     void SetVenueForTheGame(String VenueName) {
         Venue = VenueName;

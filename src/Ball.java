@@ -1,9 +1,9 @@
 public class Ball {
+    private final String BatsmanName;
+    private final String BowlerName;
+    private final String FielderName;
+    private final boolean IsANoBall;
     private char OutcomeOfTheBall;
-    private String BatsmanName;
-    private String BowlerName;
-    private String FielderName;
-    private boolean IsANoBall;
 
     Ball() {
         OutcomeOfTheBall = 'N';
@@ -21,11 +21,11 @@ public class Ball {
         if (BallOutcome >= 95) {
             OutcomeOfTheBall = 'W';
         } else {
-            OutcomeOfTheBall = (char) ((BallOutcome/17) + '0');
+            OutcomeOfTheBall = (char) ((BallOutcome / 17) + '0');
         }
     }
 
-    void setOutcomeOfTheBall(char DesiredOutcomeOfTheBall){
+    void setOutcomeOfTheBall(char DesiredOutcomeOfTheBall) {
         /*
             Setting pre-defined outcome for the ball
         */

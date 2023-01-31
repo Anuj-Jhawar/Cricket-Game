@@ -1,5 +1,5 @@
 public class Umpire {
-    private String Name;
+    private final String Name;
 
     Umpire() {
         Name = "Kumar DharmaSena.";

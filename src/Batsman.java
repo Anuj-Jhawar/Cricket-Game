@@ -1,7 +1,7 @@
-public class Batsman extends Player{
+public class Batsman extends Player {
 
 
-    Batsman(){
+    Batsman() {
         Score = 0;
         BallsPlayed = 0;
         BattingStrikeRate = 0;

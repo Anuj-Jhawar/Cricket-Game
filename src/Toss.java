@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 public class Toss {
     private String TeamWhoWonTheToss;
 
@@ -14,7 +12,8 @@ public class Toss {
         else
             return TeamWhoWonTheToss = "Team2";
     }
-    String getTeamWhoWonTheToss(){
+
+    String getTeamWhoWonTheToss() {
         return TeamWhoWonTheToss;
     }
 }

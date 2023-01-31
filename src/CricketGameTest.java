@@ -1,7 +1,11 @@
-import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
+
 public class CricketGameTest {
     static PlayerFactory playerFactory = new PlayerFactory();
+
     static void InitializeVenueForTheGame(CricketGame Game, Scanner scn) {
         /*
             Initialize the venue for the game.
@@ -86,94 +90,76 @@ public class CricketGameTest {
             Assigning the batting team for the inning.
         */
         Team[] TeamOrder = new Team[2];
-        if (i == 0){
+        if (i == 0) {
             TeamOrder[0] = Game.Team1;
             TeamOrder[1] = Game.Team2;
-        }
-        else{
+        } else {
             TeamOrder[0] = Game.Team2;
             TeamOrder[1] = Game.Team1;
         }
         return TeamOrder;
     }
-    static int AssignNewBatsmanIfWicketFallen(int Batsman1,int Batsman2){
+
+    static int AssignNewBatsmanIfWicketFallen(int Batsman1, int Batsman2) {
         /*
             Returns The new Batsman
         */
-        return Math.max(Batsman1+1,Batsman2+1);
+        return Math.max(Batsman1 + 1, Batsman2 + 1);
     }
 
-    static  int[] AssignBatsmanIfOverDone(int Batsman1,int Batsman2, String OutcomeOfTheBall){
+    static ArrayList<Integer> AssignBatsmanIfOverDone(int Batsman1, int Batsman2, String OutcomeOfTheBall) {
         /*
             Assigning the Batsman depending on the OutcomeOfTheBall and If Over done.
         */
-        int[] BatsmanOrder = new int[2];
+        ArrayList<Integer> BatsmanOrder = new ArrayList<Integer>();
         String Wicket = "W";
-        if(OutcomeOfTheBall.equals(Wicket)){
-            int NewBatsman = AssignNewBatsmanIfWicketFallen(Batsman1,Batsman2);
-            BatsmanOrder[0] = Batsman2;
-            BatsmanOrder[1] = NewBatsman;
-        }
-        else{
-            //System.out.println(OutcomeOfTheBall);
+        if (OutcomeOfTheBall.equals(Wicket)) {
+            int NewBatsman = AssignNewBatsmanIfWicketFallen(Batsman1, Batsman2);
+            BatsmanOrder.add(Batsman2);
+            BatsmanOrder.add(NewBatsman);
+        } else {
             int RunsScoredOnTheBall = Integer.parseInt(OutcomeOfTheBall);
-            if(RunsScoredOnTheBall%2==0){
-                BatsmanOrder[0] = Batsman2;
-                BatsmanOrder[1] = Batsman1;
-            }
-            else{
-                BatsmanOrder[0] = Batsman1;
-                BatsmanOrder[1] = Batsman2;
-            }
-        }
-        return BatsmanOrder;
-    }
-    static  int[] AssignBatsmanIfOverNotDone(int Batsman1,int Batsman2, String OutcomeOfTheBall){
-        /*
-            Assigning the Batsman depending on the OutcomeOfTheBall and If Over not done.
-        */
-        int[] BatsmanOrder = new int[2];
-        String Wicket = "W";
-        if(OutcomeOfTheBall.equals(Wicket)){
-            int NewBatsman = AssignNewBatsmanIfWicketFallen(Batsman1,Batsman2);
-            BatsmanOrder[0] = NewBatsman;
-            BatsmanOrder[1] = Batsman2;
-        }
-        else{
-            int RunsScoredOnTheBall = Integer.parseInt(OutcomeOfTheBall);
-            if(RunsScoredOnTheBall%2==0){
-                BatsmanOrder[0] = Batsman1;
-                BatsmanOrder[1] = Batsman2;
-            }
-            else{
-                BatsmanOrder[0] = Batsman2;
-                BatsmanOrder[1] = Batsman1;
+            if (RunsScoredOnTheBall % 2 == 0) {
+                BatsmanOrder.add(Batsman2);
+                BatsmanOrder.add(Batsman1);
+            } else {
+                BatsmanOrder.add(Batsman1);
+                BatsmanOrder.add(Batsman2);
             }
         }
         return BatsmanOrder;
     }
 
-    static int[] AssignBatsman(int Batsman1, int Batsman2, String OutcomeOfTheBall,int OverDone){
+    static ArrayList<Integer> AssignBatsmanIfOverNotDone(int Batsman1, int Batsman2, String OutcomeOfTheBall) {
+        /*
+            Assigning the Batsman depending on the OutcomeOfTheBall and If Over not done.
+        */
+        ArrayList<Integer> BatsmanOrder = AssignBatsmanIfOverDone(Batsman1,Batsman2,OutcomeOfTheBall);
+        Collections.reverse(BatsmanOrder);
+        return BatsmanOrder;
+    }
+
+    static ArrayList<Integer> AssignBatsman(int Batsman1, int Batsman2, String OutcomeOfTheBall, int OverDone) {
         /*
             Assigning the Batsman for the upcoming ball depending on the Outcome of last ball.
         */
-        if(OverDone==1){
-            return AssignBatsmanIfOverDone(Batsman1,Batsman2,OutcomeOfTheBall);
-        }
-        else{
-            return AssignBatsmanIfOverNotDone(Batsman1,Batsman2,OutcomeOfTheBall);
+        if (OverDone == 1) {
+            return AssignBatsmanIfOverDone(Batsman1, Batsman2, OutcomeOfTheBall);
+        } else {
+            return AssignBatsmanIfOverNotDone(Batsman1, Batsman2, OutcomeOfTheBall);
         }
     }
-    static Player AssignBowler(Team CurrentTeam , Player LastBowler){
+
+    static Player AssignBowler(Team CurrentTeam, Player LastBowler) {
         /*
             Assigning Bowler for the next over and making sure that bowler does not repeat.
         */
         int NumberOfAvailableBowlingOption = CurrentTeam.GetNumberOfAllRounder() + CurrentTeam.GetNumberOfBowler();
-        int IndexOfChosenBowler = 10 - (int)(Math.random()*(NumberOfAvailableBowlingOption));
+        int IndexOfChosenBowler = 10 - (int) (Math.random() * (NumberOfAvailableBowlingOption));
         return CurrentTeam.Players[IndexOfChosenBowler];
     }
 
-    static void AssignWinnerOfTheGame(CricketGame Game){
+    static void AssignWinnerOfTheGame(CricketGame Game) {
         /*
             Function to assign Winner of the Game
         */
@@ -182,6 +168,7 @@ public class CricketGameTest {
         else
             Game.SetWinner(Game.Team2.GetTeamName());
     }
+
     static void LetsPlayTheGame(CricketGame Game) {
         /*
             Function in which all the game happens.
@@ -199,25 +186,22 @@ public class CricketGameTest {
             Ball LastBall = new Ball();
             LastBall.setOutcomeOfTheBall('0');
             for (int j = 0; j < NumberOfOversInGame; j++) {
-                Bowler CurrentBowler = (Bowler) AssignBowler(BowlingTeam,null);
+                Bowler CurrentBowler = (Bowler) AssignBowler(BowlingTeam, null);
                 for (int k = 0; k < 6; k++) {
                     Ball NewBall = new Ball();
                     String LastBallOutcome = Character.toString(LastBall.GetOutcomeOfTheBall());
-                    //System.out.println(LastBallOutcome);
-                    int[] BatsmanOrder = AssignBatsman(BatsmanOnStrikeIndex,Batsman2,LastBallOutcome,k==0?1:0);
-                    BatsmanOnStrikeIndex = BatsmanOrder[0];
-                    Batsman2 = BatsmanOrder[1];
+                    ArrayList<Integer> BatsmanOrder = AssignBatsman(BatsmanOnStrikeIndex, Batsman2, LastBallOutcome, k == 0 ? 1 : 0);
+                    BatsmanOnStrikeIndex = BatsmanOrder.get(0);
+                    Batsman2 = BatsmanOrder.get(0);
                     Player BatsmanOnStrike = BattingTeam.Players[BatsmanOnStrikeIndex];
                     NewBall.AssignBallOutcome();
                     Game.Umpire.Signal(NewBall.GetOutcomeOfTheBall());
                     char OutcomeOfTheBall = NewBall.GetOutcomeOfTheBall();
                     String OutcomeOfTheBallInString = Character.toString(OutcomeOfTheBall);
-                    if (NewBall.GetOutcomeOfTheBall() == 'W')
-                    {
+                    if (NewBall.GetOutcomeOfTheBall() == 'W') {
                         BatsmanOnStrike.UpdateWicket();
                         Wickets += 1;
-                    }
-                    else{
+                    } else {
                         BattingTeam.RunsScored += (NewBall.GetOutcomeOfTheBall() - '0');
                         BatsmanOnStrike.UpdateBattingStats(Integer.parseInt(OutcomeOfTheBallInString));
                     }
@@ -228,7 +212,7 @@ public class CricketGameTest {
                     if (Wickets == 10)
                         break;
                 }
-                if(Wickets==10)
+                if (Wickets == 10)
                     break;
             }
             target = BattingTeam.RunsScored;
@@ -236,13 +220,14 @@ public class CricketGameTest {
         AssignWinnerOfTheGame(Game);
     }
 
-    static void PrintScoreCard(CricketGame Game){
+    static void PrintScoreCard(CricketGame Game) {
         /*
             Function to print ScoreCard
         */
         ScoreCard NewScoreCard = new ScoreCard(Game);
         NewScoreCard.PrintScoreCard();
     }
+
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         CricketGame Game = new CricketGame();

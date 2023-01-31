@@ -1,4 +1,4 @@
-public class Bowler extends Player implements UpdatingBowlingStats{
+public class Bowler extends Player implements UpdatingBowlingStats {
     int RunConceded;
 
     int Wickets;
@@ -9,7 +9,7 @@ public class Bowler extends Player implements UpdatingBowlingStats{
 
     double BowlingAverage;
 
-    Bowler(){
+    Bowler() {
         RunConceded = 0;
         Wickets = 0;
         BallsBowled = 0;
@@ -17,37 +17,45 @@ public class Bowler extends Player implements UpdatingBowlingStats{
         BowlingStrikeRate = 0.0;
     }
 
-    public void updateBowlingAverage(){
-        BowlingAverage = (RunConceded*1.0)/(Wickets);
+    public void updateBowlingAverage() {
+        BowlingAverage = (RunConceded * 1.0) / (Wickets);
     }
-    public void updateWickets(){
+
+    public void updateWickets() {
         Wickets++;
     }
-    public void updateBowlingStrikeRate(){
-        BowlingStrikeRate = (BallsBowled*1.0)/Wickets;
+
+    public void updateBowlingStrikeRate() {
+        BowlingStrikeRate = (BallsBowled * 1.0) / Wickets;
     }
-    public void updateRunsConceded(int run){
+
+    public void updateRunsConceded(int run) {
         RunConceded += run;
     }
-    public void updateBallsBowled(){
+
+    public void updateBallsBowled() {
         BallsBowled++;
     }
-    int getRunConceded(){
+
+    int getRunConceded() {
         return RunConceded;
     }
-    int getBallsBowled(){
+
+    int getBallsBowled() {
         return BallsBowled;
     }
-    int getWickets(){
+
+    int getWickets() {
         return Wickets;
     }
-    public void UpdateBowlingStats(String OutcomeOfTheBall){
+
+    public void UpdateBowlingStats(String OutcomeOfTheBall) {
         /*
             Function to invoke all the batting stats of the bowler.
         */
         updateBallsBowled();
         String Wicket = "W";
-        if(OutcomeOfTheBall.equals(Wicket))
+        if (OutcomeOfTheBall.equals(Wicket))
             updateWickets();
         else
             updateRunsConceded(Integer.parseInt(OutcomeOfTheBall));

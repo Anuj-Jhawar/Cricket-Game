@@ -11,50 +11,62 @@ public class Player {
         Name = name;
     }
 
-    void setScore(int runs){
-        Score += runs;
-    }
-    void setBallsPlayed(){
+    void setBallsPlayed() {
         BallsPlayed++;
     }
-    void setStrikeRate(){
-        BattingStrikeRate = (Score*100.0)/BallsPlayed;
+
+    void setStrikeRate() {
+        BattingStrikeRate = (Score * 100.0) / BallsPlayed;
     }
-    void setAverage(){
-        BattingAverage = (double) Score;
+
+    void setAverage() {
+        BattingAverage = Score;
     }
-    void setBoundaries(int runs){
-        if(runs==4)
+
+    void setBoundaries(int runs) {
+        if (runs == 4)
             NumberOfFours++;
-        else if(runs==6)
+        else if (runs == 6)
             NumberOfSixes++;
     }
-    int getScore(){
+
+    int getScore() {
         return Score;
     }
-    int getBallsPlayed(){
+
+    void setScore(int runs) {
+        Score += runs;
+    }
+
+    int getBallsPlayed() {
         return BallsPlayed;
     }
-    int getNumberOfSixes(){
+
+    int getNumberOfSixes() {
         return NumberOfSixes;
     }
-    int getNumberOfFours(){
+
+    int getNumberOfFours() {
         return NumberOfFours;
     }
-    double getBattingStrikeRate(){
+
+    double getBattingStrikeRate() {
         return BattingStrikeRate;
     }
-    String getName(){
+
+    String getName() {
         return Name;
     }
-    void UpdateBattingStats(int runs){
+
+    void UpdateBattingStats(int runs) {
         setScore(runs);
         setBallsPlayed();
         setAverage();
         setStrikeRate();
         setBoundaries(runs);
     }
-    void UpdateWicket(){
+
+    void UpdateWicket() {
         setBallsPlayed();
     }
 }

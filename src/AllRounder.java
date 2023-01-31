@@ -1,4 +1,4 @@
-public class AllRounder extends Player implements UpdatingBowlingStats{
+public class AllRounder extends Player implements UpdatingBowlingStats {
     int RunConceded;
 
     int Wickets;
@@ -9,7 +9,7 @@ public class AllRounder extends Player implements UpdatingBowlingStats{
 
     double BowlingAverage;
 
-    AllRounder(){
+    AllRounder() {
         Score = 0;
         BallsPlayed = 0;
         BattingStrikeRate = 0;
@@ -21,24 +21,29 @@ public class AllRounder extends Player implements UpdatingBowlingStats{
         BowlingStrikeRate = 0.0;
     }
 
-    public void updateBowlingAverage(){
-        BowlingAverage = (RunConceded*1.0)/(Wickets);
+    public void updateBowlingAverage() {
+        BowlingAverage = (RunConceded * 1.0) / (Wickets);
     }
-    public void updateWickets(){
+
+    public void updateWickets() {
         Wickets++;
     }
-    public void updateBowlingStrikeRate(){
-        BowlingStrikeRate = (BallsBowled*1.0)/Wickets;
+
+    public void updateBowlingStrikeRate() {
+        BowlingStrikeRate = (BallsBowled) / Wickets;
     }
-    public void updateRunsConceded(int run){
+
+    public void updateRunsConceded(int run) {
         RunConceded += run;
     }
-    public void updateBallsBowled(){
+
+    public void updateBallsBowled() {
         BallsBowled++;
     }
-    public void UpdateBowlingStats(String OutcomeOfTheBall){
+
+    public void UpdateBowlingStats(String OutcomeOfTheBall) {
         updateBallsBowled();
-        if(OutcomeOfTheBall=="W")
+        if (OutcomeOfTheBall == "W")
             updateWickets();
         else
             updateRunsConceded(Integer.getInteger(OutcomeOfTheBall));
