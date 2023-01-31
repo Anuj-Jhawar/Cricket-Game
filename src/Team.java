@@ -1,10 +1,10 @@
 public class Team {
     Player[] Players = new Player[11];
-    int NumberOfBatsman;
-    int NumberOfBowler;
-    int NumberOfAllRounder;
-    int RunsScored;
-    int WicketsFallen;
+    private int NumberOfBatsman;
+    private int NumberOfBowler;
+    private int NumberOfAllRounder;
+    private int RunsScored;
+    private int WicketsFallen;
     private String Name;
 
     Team() {
@@ -17,6 +17,9 @@ public class Team {
 
     String GetTeamName() {
         return Name;
+    }
+    void setPlayer(int index, Player Player){
+
     }
 
     int GetNumberOfBatsman() {
@@ -31,7 +34,7 @@ public class Team {
         return NumberOfAllRounder;
     }
 
-    int GetRunsScore() {
+    int GetRunsScored() {
         return RunsScored;
     }
 
@@ -39,21 +42,15 @@ public class Team {
         return WicketsFallen;
     }
 
+    Player getPlayer(int index){
+        return Players[index];
+    }
+
     void SetTeamName(String NameForTeam) {
         Name = NameForTeam;
     }
-
-    //    void SetNumberOfBatsman(int CurrentNumberOfBatsman){
-//        NumberOfBatsman = CurrentNumberOfBatsman;
-//    }
-//    void SetNumberOfBowler(int CurrentNumberOfBowler){
-//        NumberOfBowler = CurrentNumberOfBowler;
-//    }
-//    void SetNumberOfAllRounder(int CurrentNumberOfAllRounder){
-//        NumberOfAllRounder = CurrentNumberOfAllRounder;
-//    }
-    void SetRunsScore(int RunsScoredTillNow) {
-        RunsScored = RunsScoredTillNow;
+    void SetRunsScored(int RunsScoredTillNow) {
+        RunsScored += RunsScoredTillNow;
     }
 
     void SetWicketsFallen(int WicketsFallenTillNow) {

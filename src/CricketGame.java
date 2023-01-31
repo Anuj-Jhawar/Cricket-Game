@@ -1,12 +1,18 @@
 public class CricketGame {
-    Team Team1 = new Team();
-    Team Team2 = new Team();
-    Toss TossForGame = new Toss();
-    Umpire Umpire = new Umpire();
+    private Team Team1 = new Team();
+    private Team Team2 = new Team();
+    private Toss TossForGame = new Toss();
+    private Umpire Umpire = new Umpire();
     private String Venue;
     private String Winner;
     private String Format;
 
+    Team getTeam1(){
+        return Team1;
+    }
+    Team getTeam2(){
+        return Team2;
+    }
     void SetVenueForTheGame(String VenueName) {
         Venue = VenueName;
     }
@@ -15,8 +21,16 @@ public class CricketGame {
         Format = FormatType;
     }
 
+    String InitiateToss(){
+        return TossForGame.CallForToss();
+    }
+
     String GetFormat() {
         return Format;
+    }
+
+    void signalOutcomeOfTheBall(char OutcomeOfTheBall){
+        Umpire.Signal(OutcomeOfTheBall);
     }
 
     void SetWinner(String WinningTeam) {

@@ -19,9 +19,9 @@ public class CricketGameTest {
             Take name of teams as input and assign them respectively.
         */
         System.out.println("Please Enter Team1 name.");
-        Game.Team1.SetTeamName(scn.nextLine());
+        Game.getTeam1().SetTeamName(scn.nextLine());
         System.out.println("Please Enter Team2 name");
-        Game.Team2.SetTeamName(scn.nextLine());
+        Game.getTeam2().SetTeamName(scn.nextLine());
     }
 
     static String CompleteToss(CricketGame Game) {
@@ -29,7 +29,7 @@ public class CricketGameTest {
             Function to complete the toss for the game.
         */
         System.out.println("Time for toss");
-        String TeamWhoWonTheToss = Game.TossForGame.CallForToss();
+        String TeamWhoWonTheToss = Game.InitiateToss();
         return TeamWhoWonTheToss;
     }
 
@@ -62,9 +62,9 @@ public class CricketGameTest {
             Initialize both the teams with player inputs.
         */
         System.out.println("Initializing Team1");
-        InitializeTeamWithPlayersInputs(Game.Team1, scn);
+        InitializeTeamWithPlayersInputs(Game.getTeam1(), scn);
         System.out.println("Initializing Team2");
-        InitializeTeamWithPlayersInputs(Game.Team2, scn);
+        InitializeTeamWithPlayersInputs(Game.getTeam2(), scn);
     }
 
     static int InitializeNumberOfOvers(CricketGame Game) {
@@ -91,11 +91,11 @@ public class CricketGameTest {
         */
         Team[] TeamOrder = new Team[2];
         if (i == 0) {
-            TeamOrder[0] = Game.Team1;
-            TeamOrder[1] = Game.Team2;
+            TeamOrder[0] = Game.getTeam1();
+            TeamOrder[1] = Game.getTeam2();
         } else {
-            TeamOrder[0] = Game.Team2;
-            TeamOrder[1] = Game.Team1;
+            TeamOrder[0] = Game.getTeam2();
+            TeamOrder[1] = Game.getTeam1();
         }
         return TeamOrder;
     }
@@ -163,10 +163,10 @@ public class CricketGameTest {
         /*
             Function to assign Winner of the Game
         */
-        if (Game.Team1.RunsScored > Game.Team2.RunsScored)
-            Game.SetWinner(Game.Team1.GetTeamName());
+        if (Game.getTeam1().GetRunsScored() > Game.getTeam2().GetRunsScored())
+            Game.SetWinner(Game.getTeam1().GetTeamName());
         else
-            Game.SetWinner(Game.Team2.GetTeamName());
+            Game.SetWinner(Game.getTeam2().GetTeamName());
     }
 
     static void LetsPlayTheGame(CricketGame Game) {
@@ -186,7 +186,7 @@ public class CricketGameTest {
             Ball LastBall = new Ball();
             LastBall.setOutcomeOfTheBall('0');
             for (int j = 0; j < NumberOfOversInGame; j++) {
-                Bowler CurrentBowler = (Bowler) AssignBowler(BowlingTeam, null);
+                Player CurrentBowler = AssignBowler(BowlingTeam, null);
                 for (int k = 0; k < 6; k++) {
                     Ball NewBall = new Ball();
                     String LastBallOutcome = Character.toString(LastBall.GetOutcomeOfTheBall());
@@ -195,19 +195,19 @@ public class CricketGameTest {
                     Batsman2 = BatsmanOrder.get(0);
                     Player BatsmanOnStrike = BattingTeam.Players[BatsmanOnStrikeIndex];
                     NewBall.AssignBallOutcome();
-                    Game.Umpire.Signal(NewBall.GetOutcomeOfTheBall());
+                    Game.signalOutcomeOfTheBall(NewBall.GetOutcomeOfTheBall());
                     char OutcomeOfTheBall = NewBall.GetOutcomeOfTheBall();
                     String OutcomeOfTheBallInString = Character.toString(OutcomeOfTheBall);
                     if (NewBall.GetOutcomeOfTheBall() == 'W') {
                         BatsmanOnStrike.UpdateWicket();
                         Wickets += 1;
                     } else {
-                        BattingTeam.RunsScored += (NewBall.GetOutcomeOfTheBall() - '0');
+                        BattingTeam.SetRunsScored(NewBall.GetOutcomeOfTheBall() - '0');
                         BatsmanOnStrike.UpdateBattingStats(Integer.parseInt(OutcomeOfTheBallInString));
                     }
                     LastBall = NewBall;
                     CurrentBowler.UpdateBowlingStats(OutcomeOfTheBallInString);
-                    if (target != -1 && BattingTeam.RunsScored > target)
+                    if (target != -1 && BattingTeam.GetRunsScored() > target)
                         break;
                     if (Wickets == 10)
                         break;
@@ -215,7 +215,7 @@ public class CricketGameTest {
                 if (Wickets == 10)
                     break;
             }
-            target = BattingTeam.RunsScored;
+            target = BattingTeam.GetRunsScored();
         }
         AssignWinnerOfTheGame(Game);
     }

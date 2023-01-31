@@ -65,6 +65,9 @@ public class Player {
         setStrikeRate();
         setBoundaries(runs);
     }
+    public void UpdateBowlingStats(String OutcomeOfTheBall){
+
+    }
 
     void UpdateWicket() {
         setBallsPlayed();
