@@ -17,7 +17,7 @@ public class Team {
         NumberOfBowler = 0;
     }
 
-    String GetTeamName() {
+    String getTeamName() {
         return Name;
     }
     Player[] getPlayers(){
@@ -28,19 +28,19 @@ public class Team {
         return NumberOfBatsman;
     }
 
-    int GetNumberOfBowler() {
+    int getNumberOfBowler() {
         return NumberOfBowler;
     }
 
-    int GetNumberOfAllRounder() {
+    int getNumberOfAllRounder() {
         return NumberOfAllRounder;
     }
 
-    int GetRunsScored() {
+    int getRunsScored() {
         return RunsScored;
     }
 
-    int GetWicketsFallen() {
+    int getWicketsFallen() {
         return WicketsFallen;
     }
 
@@ -48,18 +48,18 @@ public class Team {
         return Players[index];
     }
 
-    void SetTeamName(String NameForTeam) {
+    void setTeamName(String NameForTeam) {
         Name = NameForTeam;
     }
-    void SetRunsScored(int RunsScoredTillNow) {
+    void setRunsScored(int RunsScoredTillNow) {
         RunsScored += RunsScoredTillNow;
     }
 
-    void SetWicketsFallen() {
+    void setWicketsFallen() {
         WicketsFallen += 1;
     }
 
-    void UpdateNumberOfEachPlayers(String type) {
+    void updateNumberOfEachPlayers(String type) {
         switch (type) {
             case "Batsman":
                 NumberOfBatsman++;
@@ -72,13 +72,13 @@ public class Team {
         }
     }
 
-    void UpdateBattingStatsOfPlayer(int PlayerIndex,int runs){
-        Players[PlayerIndex].UpdateBattingStats(runs);
+    void updateBattingStatsOfPlayer(int PlayerIndex, int runs){
+        Players[PlayerIndex].updateBattingStats(runs);
     }
-    void UpdateBowlingStatsOfPlayer(int PlayerIndex,String OutComeOfTheBall){
-        Players[PlayerIndex].UpdateBowlingStats(OutComeOfTheBall);
+    void updateBowlingStatsOfPlayer(int PlayerIndex, String OutComeOfTheBall){
+        Players[PlayerIndex].updateBowlingStats(OutComeOfTheBall);
     }
-    void InitializePlayers(){
+    void initializePlayers(){
         Scanner scn = new Scanner(System.in);
         PlayerFactory playerFactory = new PlayerFactory();
         for (int i = 0; i < 11; i++) {
@@ -86,7 +86,7 @@ public class Team {
             String name = scn.nextLine();
             System.out.println("Please Enter Player " + (i + 1) + " type");
             String type = scn.nextLine();
-            UpdateNumberOfEachPlayers(type);
+            updateNumberOfEachPlayers(type);
             Players[i] = playerFactory.getPlayer(type);
             Players[i].SetName(name);
         }

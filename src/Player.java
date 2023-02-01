@@ -58,9 +58,9 @@ public class Player {
         return Name;
     }
 
-    void UpdateBattingStats(int runs) {
+    void updateBattingStats(int runs) {
         if (runs == -1) {
-            UpdateWicket();
+            updateWicket();
             return;
         }
         setScore(runs);
@@ -70,11 +70,11 @@ public class Player {
         setBoundaries(runs);
     }
 
-    public void UpdateBowlingStats(String OutcomeOfTheBall) {
+    public void updateBowlingStats(String OutcomeOfTheBall) {
 
     }
 
-    void UpdateWicket() {
+    void updateWicket() {
         setBallsPlayed();
     }
 }

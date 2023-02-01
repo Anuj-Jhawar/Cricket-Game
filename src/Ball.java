@@ -13,7 +13,7 @@ public class Ball {
         IsANoBall = false;
     }
 
-    void AssignBallOutcome() {
+    void assignBallOutcome() {
         /*
             Assigning the outcome of the ball.
         */
@@ -32,7 +32,7 @@ public class Ball {
         OutcomeOfTheBall = DesiredOutcomeOfTheBall;
     }
 
-    char GetOutcomeOfTheBall() {
+    char getOutcomeOfTheBall() {
         /*
             Returning the outcome of the ball.
         */

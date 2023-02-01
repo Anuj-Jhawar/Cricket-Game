@@ -8,9 +8,9 @@ public class ScoreCard {
         Innings[3] = new BowlingScoreCard(Game.getTeam1());
     }
 
-    void PrintScoreCard() {
+    void printScoreCard() {
         for (InningScoreCard Stats : Innings) {
-            Stats.ShowStats();
+            Stats.showStats();
         }
     }
 }

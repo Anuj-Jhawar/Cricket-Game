@@ -1,7 +1,7 @@
 public class Toss {
     private String TeamWhoWonTheToss;
 
-    String CallForToss() {
+    String callForToss() {
         /*
             Function which decides which team have won the toss.
         */

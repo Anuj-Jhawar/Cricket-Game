@@ -41,7 +41,7 @@ public class AllRounder extends Player implements UpdatingBowlingStats {
         BallsBowled++;
     }
 
-    public void UpdateBowlingStats(String OutcomeOfTheBall) {
+    public void updateBowlingStats(String OutcomeOfTheBall) {
         updateBallsBowled();
         if (OutcomeOfTheBall == "W")
             updateWickets();

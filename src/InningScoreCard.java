@@ -1,3 +1,3 @@
 public interface InningScoreCard {
-    void ShowStats();
+    void showStats();
 }

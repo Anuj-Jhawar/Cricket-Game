@@ -15,71 +15,71 @@ public class CricketGame {
         return Team2;
     }
 
-    void SetVenueForTheGame(String VenueName) {
+    void setVenueForTheGame(String VenueName) {
         Venue = VenueName;
     }
 
-    void SetFormatForTheGame(String FormatType) {
+    void setFormatForTheGame(String FormatType) {
         Format = FormatType;
     }
 
-    String InitiateToss() {
-        return TossForGame.CallForToss();
+    String initiateToss() {
+        return TossForGame.callForToss();
     }
 
-    String GetFormat() {
+    String getFormat() {
         return Format;
     }
 
     void signalOutcomeOfTheBall(char OutcomeOfTheBall) {
-        Umpire.Signal(OutcomeOfTheBall);
+        Umpire.signal(OutcomeOfTheBall);
     }
 
-    void SetWinner(String WinningTeam) {
+    void setWinner(String WinningTeam) {
         Winner = WinningTeam;
     }
 
-    void UpdateTeamBattingStats(int index, int OutComeOfTheBall) {
+    void updateTeamBattingStats(int index, int OutComeOfTheBall) {
         /*
             Updating the Team Batting Stats.
         */
         if (index == 0) {
-            Team1.SetRunsScored(OutComeOfTheBall);
+            Team1.setRunsScored(OutComeOfTheBall);
         } else {
-            Team2.SetRunsScored(OutComeOfTheBall);
+            Team2.setRunsScored(OutComeOfTheBall);
         }
     }
 
-    void UpdateTeamWicketsFallen(int index) {
+    void updateTeamWicketsFallen(int index) {
         /*
             Updating the Team WicketFallen Stats.
         */
         if (index == 0) {
-            Team1.SetWicketsFallen();
+            Team1.setWicketsFallen();
         } else {
-            Team1.SetWicketsFallen();
+            Team1.setWicketsFallen();
         }
     }
 
-    void UpdateBattingStatsOfBatsman(int TeamIndex, int PlayerIndex, int runs) {
+    void updateBattingStatsOfBatsman(int TeamIndex, int PlayerIndex, int runs) {
         /*
             Updating the batsman stats depending on the runs scored on the ball.
         */
         if (TeamIndex == 0) {
-            Team1.UpdateBattingStatsOfPlayer(PlayerIndex, runs);
+            Team1.updateBattingStatsOfPlayer(PlayerIndex, runs);
         } else {
-            Team2.UpdateBattingStatsOfPlayer(PlayerIndex, runs);
+            Team2.updateBattingStatsOfPlayer(PlayerIndex, runs);
         }
     }
 
-    void UpdateBowlingStatsOfBowler(int TeamIndex, int PlayerIndex, String OutcomeOfTheBall) {
+    void updateBowlingStatsOfBowler(int TeamIndex, int PlayerIndex, String OutcomeOfTheBall) {
         /*
             Updating the bowler stats depending on the outcome of the ball.
         */
         if (TeamIndex == 0) {
-            Team2.UpdateBowlingStatsOfPlayer(PlayerIndex, OutcomeOfTheBall);
+            Team2.updateBowlingStatsOfPlayer(PlayerIndex, OutcomeOfTheBall);
         } else {
-            Team1.UpdateBowlingStatsOfPlayer(PlayerIndex, OutcomeOfTheBall);
+            Team1.updateBowlingStatsOfPlayer(PlayerIndex, OutcomeOfTheBall);
         }
     }
 
@@ -88,23 +88,23 @@ public class CricketGame {
             Returning the target set by the Batting team.
         */
         if (index == 0)
-            return Team1.GetRunsScored();
+            return Team1.getRunsScored();
         else
-            return Team2.GetRunsScored();
+            return Team2.getRunsScored();
     }
 
-    void InitializeTeamWithPlayersInputs(int CurrentTeam) {
+    void initializeTeamWithPlayersInputs(int CurrentTeam) {
         /*
             Initializing the Teams with PLayer inputs.
         */
         if (CurrentTeam == 1) {
-            Team1.InitializePlayers();
+            Team1.initializePlayers();
         } else {
-            Team2.InitializePlayers();
+            Team2.initializePlayers();
         }
     }
 
-    String GetWinner() {
+    String getWinner() {
         /*
             Returning the winner of the game.
         */

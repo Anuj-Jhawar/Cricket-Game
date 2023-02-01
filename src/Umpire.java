@@ -5,60 +5,60 @@ public class Umpire {
         Name = "Kumar DharmaSena.";
     }
 
-    void Wicket() {
+    void wicket() {
         /*
             Function which helps umpire to signal wicket.
         */
         System.out.println("Its a Wicket");
     }
 
-    void Four() {
+    void four() {
         /*
             Function which helps umpire to signal four.
         */
         System.out.println("Its a four");
     }
 
-    void Six() {
+    void six() {
         /*
             Function which helps umpire to signal Six.
         */
         System.out.println("Its a Six");
     }
 
-    void Wide() {
+    void wide() {
         /*
             Function which helps umpire to signal Wide.
         */
         System.out.println("Its a wide");
     }
 
-    void NoBall() {
+    void noBall() {
         /*
             Function which helps umpire to signal NoBall.
         */
         System.out.println("Its a NoBall and a FreeHit!!!");
     }
 
-    void Runs(char RunsScored) {
+    void runs(char RunsScored) {
         /*
             Runs scored other than 4 or 6.
         */
         System.out.println("On this ball BatsMan scored " + RunsScored);
     }
 
-    void Signal(char OutcomeOfTheBall) {
+    void signal(char OutcomeOfTheBall) {
         /*
             Helps Umpire decides to signal different function depending on the OutcomeOfTheBall.
         */
         if (OutcomeOfTheBall == 'W')
-            Wicket();
+            wicket();
         else if (OutcomeOfTheBall == '4')
-            Four();
+            four();
         else if (OutcomeOfTheBall == '6')
-            Six();
+            six();
         else
-            Runs(OutcomeOfTheBall);
+            runs(OutcomeOfTheBall);
     }
 
 }

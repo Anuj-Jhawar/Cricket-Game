@@ -49,7 +49,7 @@ public class Bowler extends Player implements UpdatingBowlingStats {
         return Wickets;
     }
 
-    public void UpdateBowlingStats(String OutcomeOfTheBall) {
+    public void updateBowlingStats(String OutcomeOfTheBall) {
         /*
             Function to invoke all the batting stats of the bowler.
         */

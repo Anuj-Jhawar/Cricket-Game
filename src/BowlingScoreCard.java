@@ -5,7 +5,7 @@ public class BowlingScoreCard implements InningScoreCard {
         BowlingStats = BowlingTeam.getPlayers();
     }
 
-    void PrintHeadings() {
+    void printHeadings() {
         /*
             Printing the headers for the Bowling part of the scorecard.
         */
@@ -16,11 +16,11 @@ public class BowlingScoreCard implements InningScoreCard {
         System.out.printf("%-20s %10s %10s %5s %n", BowlerNames, Runs, Balls, Wickets);
     }
 
-    public void ShowStats() {
+    public void showStats() {
         /*
             Printing the bowling part of the scorecard.
         */
-        PrintHeadings();
+        printHeadings();
         for (Player CurrentBowler : BowlingStats) {
             if (CurrentBowler instanceof Bowler && ((Bowler) CurrentBowler).getBallsBowled() > 0) {
                 System.out.printf("%-20s %10s %10s %5s %n", CurrentBowler.getName(), ((Bowler) CurrentBowler).getRunConceded(), ((Bowler) CurrentBowler).getBallsBowled(), ((Bowler) CurrentBowler).getWickets());
