@@ -2,7 +2,7 @@ public class BattingScoreCard implements InningScoreCard {
     Player[] BattingStats = new Player[11];
 
     BattingScoreCard(Team BattingTeam) {
-        BattingStats = BattingTeam.Players;
+        BattingStats = BattingTeam.getPlayers();
     }
 
     void PrintHeadings() {

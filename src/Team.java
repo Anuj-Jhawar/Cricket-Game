@@ -1,5 +1,7 @@
+import java.util.Scanner;
+
 public class Team {
-    Player[] Players = new Player[11];
+    private Player[] Players = new Player[11];
     private int NumberOfBatsman;
     private int NumberOfBowler;
     private int NumberOfAllRounder;
@@ -18,8 +20,8 @@ public class Team {
     String GetTeamName() {
         return Name;
     }
-    void setPlayer(int index, Player Player){
-
+    Player[] getPlayers(){
+        return Players;
     }
 
     int GetNumberOfBatsman() {
@@ -75,5 +77,18 @@ public class Team {
     }
     void UpdateBowlingStatsOfPlayer(int PlayerIndex,String OutComeOfTheBall){
         Players[PlayerIndex].UpdateBowlingStats(OutComeOfTheBall);
+    }
+    void InitializePlayers(){
+        Scanner scn = new Scanner(System.in);
+        PlayerFactory playerFactory = new PlayerFactory();
+        for (int i = 0; i < 11; i++) {
+            System.out.println("Please Enter Player " + (i + 1) + " Name");
+            String name = scn.nextLine();
+            System.out.println("Please Enter Player " + (i + 1) + " type");
+            String type = scn.nextLine();
+            UpdateNumberOfEachPlayers(type);
+            Players[i] = playerFactory.getPlayer(type);
+            Players[i].SetName(name);
+        }
     }
 }

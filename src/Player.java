@@ -59,13 +59,18 @@ public class Player {
     }
 
     void UpdateBattingStats(int runs) {
+        if (runs == -1) {
+            UpdateWicket();
+            return;
+        }
         setScore(runs);
         setBallsPlayed();
         setAverage();
         setStrikeRate();
         setBoundaries(runs);
     }
-    public void UpdateBowlingStats(String OutcomeOfTheBall){
+
+    public void UpdateBowlingStats(String OutcomeOfTheBall) {
 
     }
 

@@ -1,13 +1,13 @@
 public class Bowler extends Player implements UpdatingBowlingStats {
-    int RunConceded;
+    private int RunConceded;
 
-    int Wickets;
+    private int Wickets;
 
-    int BallsBowled;
+    private int BallsBowled;
 
-    double BowlingStrikeRate;
+    private double BowlingStrikeRate;
 
-    double BowlingAverage;
+    private double BowlingAverage;
 
     Bowler() {
         RunConceded = 0;

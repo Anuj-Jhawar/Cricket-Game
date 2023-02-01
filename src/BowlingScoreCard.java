@@ -2,7 +2,7 @@ public class BowlingScoreCard implements InningScoreCard {
     Player[] BowlingStats = new Player[11];
 
     BowlingScoreCard(Team BowlingTeam) {
-        BowlingStats = BowlingTeam.Players;
+        BowlingStats = BowlingTeam.getPlayers();
     }
 
     void PrintHeadings() {
@@ -22,7 +22,7 @@ public class BowlingScoreCard implements InningScoreCard {
         */
         PrintHeadings();
         for (Player CurrentBowler : BowlingStats) {
-            if (CurrentBowler instanceof Bowler && ((Bowler) CurrentBowler).BallsBowled > 0) {
+            if (CurrentBowler instanceof Bowler && ((Bowler) CurrentBowler).getBallsBowled() > 0) {
                 System.out.printf("%-20s %10s %10s %5s %n", CurrentBowler.getName(), ((Bowler) CurrentBowler).getRunConceded(), ((Bowler) CurrentBowler).getBallsBowled(), ((Bowler) CurrentBowler).getWickets());
             }
         }
