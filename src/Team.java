@@ -53,8 +53,8 @@ public class Team {
         RunsScored += RunsScoredTillNow;
     }
 
-    void SetWicketsFallen(int WicketsFallenTillNow) {
-        WicketsFallen = WicketsFallenTillNow;
+    void SetWicketsFallen() {
+        WicketsFallen += 1;
     }
 
     void UpdateNumberOfEachPlayers(String type) {
@@ -68,5 +68,12 @@ public class Team {
             default:
                 NumberOfAllRounder++;
         }
+    }
+
+    void UpdateBattingStatsOfPlayer(int PlayerIndex,int runs){
+        Players[PlayerIndex].UpdateBattingStats(runs);
+    }
+    void UpdateBowlingStatsOfPlayer(int PlayerIndex,String OutComeOfTheBall){
+        Players[PlayerIndex].UpdateBowlingStats(OutComeOfTheBall);
     }
 }
