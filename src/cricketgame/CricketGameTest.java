@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class CricketGameTest {
-    static String completeToss(CricketGame game) {
+    String completeToss(CricketGame game) {
         /*
             Function to complete the toss for the game.
         */
@@ -20,7 +20,7 @@ public class CricketGameTest {
         else
             return game.getTeam2().getTeamName();
     }
-    static int initializeNumberOfOvers(CricketGame game) {
+    int initializeNumberOfOvers(CricketGame game) {
         /*
             Decide number of overs based on the format of the game.
         */
@@ -38,7 +38,7 @@ public class CricketGameTest {
         return numberofOversInGame;
     }
 
-    static Team[] assignBattingTeam(CricketGame game, int i) {
+    Team[] assignBattingTeam(CricketGame game, int i) {
         /*
             Assigning the batting team for the inning.
         */
@@ -53,14 +53,14 @@ public class CricketGameTest {
         return teamOrder;
     }
 
-    static int assignNewBatsmanIfWicketFallen(int batsman1, int batsman2) {
+    int assignNewBatsmanIfWicketFallen(int batsman1, int batsman2) {
         /*
             Returns The new Others.Batsman
         */
         return Math.max(batsman1 + 1, batsman2 + 1);
     }
 
-    static ArrayList<Integer> assignBatsmanIfOverDone(int batsman1, int batsman2, int outcomeOfTheBall) {
+    ArrayList<Integer> assignBatsmanIfOverDone(int batsman1, int batsman2, int outcomeOfTheBall) {
         /*
             Assigning the Others.Batsman depending on the OutcomeOfTheBall and If Others.Over done.
         */
@@ -82,7 +82,7 @@ public class CricketGameTest {
         return batsmanOrder;
     }
 
-    static ArrayList<Integer> assignBatsmanIfOverNotDone(int batsman1, int batsman2, int outcomeOfTheBall) {
+    ArrayList<Integer> assignBatsmanIfOverNotDone(int batsman1, int batsman2, int outcomeOfTheBall) {
         /*
             Assigning the Others.Batsman depending on the outcomeOfTheBall and If Others.Over not done.
         */
@@ -91,7 +91,7 @@ public class CricketGameTest {
         return BatsmanOrder;
     }
 
-    static ArrayList<Integer> assignBatsman(int batsman1, int batsman2, int outcomeOfTheBall, int overDone) {
+    ArrayList<Integer> assignBatsman(int batsman1, int batsman2, int outcomeOfTheBall, int overDone) {
         /*
             Assigning the Others.Batsman for the upcoming ball depending on the Outcome of last ball.
         */
@@ -102,7 +102,7 @@ public class CricketGameTest {
         }
     }
 
-    static int assignBowler(CricketGame game, int bowlingTeamIndex, int lastBowler) {
+    int assignBowler(CricketGame game, int bowlingTeamIndex, int lastBowler) {
         /*
             Assigning Others.Bowler for the next over and making sure that bowler does not repeat.
         */
@@ -116,8 +116,7 @@ public class CricketGameTest {
         int indexOfChosenBowler = 10 - (int) (Math.random() * (numberOfAvailableBowlingOption));
         return indexOfChosenBowler;
     }
-
-    static void assignWinnerOfTheGame(CricketGame Game) {
+    void assignWinnerOfTheGame(CricketGame Game) {
         /*
             Function to assign Winner of the Game
         */
@@ -127,11 +126,11 @@ public class CricketGameTest {
             Game.setWinner(Game.getTeam2().getTeamName());
     }
 
-    static boolean checkIfInningIsOver(CricketGame game, int wickets, int target) {
+    boolean checkIfInningIsOver(CricketGame game, int wickets, int target) {
         return (target != -1 && game.getScoreOfTeam(1) > target) || wickets == 10;
     }
 
-    static void updateBattingAndBowlingStatsAfterEachBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler, Ball newBall) {
+    void updateBattingAndBowlingStatsAfterEachBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler, Ball newBall) {
         /*
             Updating the stats of batsman and bowler after every ball.
         */
@@ -144,7 +143,7 @@ public class CricketGameTest {
         game.updateBowlingStatsOfBowler(teamIndex, currentBowler, newBall.getOutcomeOfTheBall());
     }
 
-    static Ball playTheBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler) {
+    Ball playTheBall(CricketGame game, int teamIndex, int batsmanOnStrikeIndex, int currentBowler) {
         /*
             Playing and assigning every outcome of the ball.
         */
@@ -155,7 +154,7 @@ public class CricketGameTest {
         return newBall;
     }
 
-    static void playAInning(CricketGame game, int target, int numberOfOversInGame, int i) {
+    void playAInning(CricketGame game, int target, int numberOfOversInGame, int i) {
         /*
             Function to play a Inning.
         */
@@ -183,7 +182,7 @@ public class CricketGameTest {
         }
     }
 
-    static void letsPlayTheGame(CricketGame game) {
+    void letsPlayTheGame(CricketGame game) {
         /*
             Function in which all the game happens.
         */
@@ -196,7 +195,7 @@ public class CricketGameTest {
         assignWinnerOfTheGame(game);
     }
 
-    static void printScoreCard(CricketGame game) {
+    void printScoreCard(CricketGame game) {
         /*
             Function to print Others.ScoreCard
         */
@@ -204,7 +203,7 @@ public class CricketGameTest {
         newScoreCard.printScoreCard();
     }
 
-    public static void main(String[] args) {
+    public void play() {
         Scanner scn = new Scanner(System.in);
         CricketGame game = new CricketGame();
         System.out.println("Game Start");
