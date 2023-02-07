@@ -1,6 +1,6 @@
 package stats;
 
-public class BattingStats implements UpdateStats{
+public class BattingStats implements Stats{
 
     public BattingStats(){
         score = 0;
@@ -72,6 +72,6 @@ public class BattingStats implements UpdateStats{
     }
 
     public void updateStats(int runs){
-
+        updateBattingStats(runs);
     }
 }

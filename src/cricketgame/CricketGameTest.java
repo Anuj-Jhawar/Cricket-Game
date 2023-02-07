@@ -114,6 +114,9 @@ public class CricketGameTest {
 
         int numberOfAvailableBowlingOption = currentTeam.getNumberOfAllRounder() + currentTeam.getNumberOfBowler();
         int indexOfChosenBowler = 10 - (int) (Math.random() * (numberOfAvailableBowlingOption));
+        while(lastBowler==indexOfChosenBowler){
+            indexOfChosenBowler = 10 - (int) (Math.random() * (numberOfAvailableBowlingOption));
+        }
         return indexOfChosenBowler;
     }
     void assignWinnerOfTheGame(CricketGame Game) {
@@ -177,6 +180,7 @@ public class CricketGameTest {
                 if (checkIfInningIsOver)
                     break;
             }
+            lastBowler = currentBowler;
             if (wickets == 10)
                 break;
         }

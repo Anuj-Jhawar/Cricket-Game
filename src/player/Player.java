@@ -2,13 +2,14 @@ package player;
 
 import stats.BattingStats;
 import stats.BowlingStats;
+import stats.Stats;
 
 import java.util.ArrayList;
 
 public class Player {
     static int playerCount = 0;
-    private ArrayList<BattingStats> battingStats = new ArrayList<BattingStats>();
-    private ArrayList<BowlingStats> bowlingStats = new ArrayList<BowlingStats>();
+    private ArrayList<Stats> battingStats = new ArrayList<Stats>();
+    private ArrayList<Stats> bowlingStats = new ArrayList<Stats>();
 
     public Player(){
         battingStats.add(new BattingStats());
@@ -31,19 +32,19 @@ public class Player {
     }
 
     public void updateBattingStats(int runs) {
-        battingStats.get(battingStats.size() - 1).updateBattingStats(runs);
+        battingStats.get(battingStats.size() - 1).updateStats(runs);
     }
 
     public BattingStats getBattingStats(){
-        return battingStats.get(battingStats.size() - 1);
+        return (BattingStats) battingStats.get(battingStats.size() - 1);
     }
 
     public BowlingStats getBowlingStats(){
-        return bowlingStats.get(bowlingStats.size() - 1);
+        return (BowlingStats) bowlingStats.get(bowlingStats.size() - 1);
     }
 
     public void updateBowlingStats(int outcomeOfTheBall) {
-        bowlingStats.get(bowlingStats.size() - 1).updateBowlingStats(outcomeOfTheBall);
+        bowlingStats.get(bowlingStats.size() - 1).updateStats(outcomeOfTheBall);
     }
 
 }

@@ -1,5 +1,5 @@
 package stats;
 
-public interface UpdateStats {
+public interface Stats {
     void updateStats(int value);
 }

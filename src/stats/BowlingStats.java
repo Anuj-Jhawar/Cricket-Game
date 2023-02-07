@@ -3,7 +3,7 @@ package stats;
 import input.InputInterface;
 import input.PlayerNameInput;
 
-public class BowlingStats implements UpdateStats{
+public class BowlingStats implements Stats{
     private int runConceded;
 
     private int wickets;
@@ -66,6 +66,6 @@ public class BowlingStats implements UpdateStats{
         updateBowlingStrikeRate();
     }
     public void updateStats(int runs){
-
+        updateBowlingStats(runs);
     }
 }
