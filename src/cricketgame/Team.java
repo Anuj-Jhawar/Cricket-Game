@@ -22,9 +22,7 @@ public class Team {
     private int wicketsFallen;
     private String name;
 
-    Team() {
-        InputInterface TakeTeamNameInput = new TeamNameInput(this);
-        TakeTeamNameInput.collectInput();
+    public Team() {
         InputInterface TakePlayerTypeInput = new PlayerTypeInput(this);
         TakePlayerTypeInput.collectInput();
         runsScored = 0;
@@ -98,5 +96,11 @@ public class Team {
     }
     public void updateBowlingStatsOfPlayer(int playerIndex, int outComeOfTheBall){
         players[playerIndex].updateBowlingStats(outComeOfTheBall);
+    }
+    public void addBattingAndBowlingStatsForEachPlayer(){
+        for(int i = 0;i<11;i++){
+            players[i].addBattingStatsObject();
+            players[i].addBowlingStatsObject();
+        }
     }
 }

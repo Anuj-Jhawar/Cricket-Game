@@ -1,10 +1,11 @@
 package cricketgamecontroller;
 
-import cricketgame.CricketGameTest;
+import cricketgame.CricketGamePlay;
 
 public class Tournament {
     public static void main(String[] args) {
-        CricketGameTest CricketGame = new CricketGameTest();
+        CricketGamePlay CricketGame = new CricketGamePlay();
+        CricketGame.play();
         CricketGame.play();
     }
 }

@@ -11,10 +11,11 @@ public class VenueInput implements InputInterface{
         this.game = Game;
     }
 
-    public void collectInput(){
+    public String collectInput(){
         Scanner scn = new Scanner(System.in);
         System.out.println("Please Enter the Venue of the Game: ");
         String FormatOfTheGame = scn.nextLine();
         game.setVenueForTheGame(FormatOfTheGame);
+        return FormatOfTheGame;
     }
 }

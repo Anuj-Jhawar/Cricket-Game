@@ -10,7 +10,7 @@ public class PlayerTypeInput implements InputInterface{
     public PlayerTypeInput(Team team){
         this.team = team;
     }
-    public void collectInput(){
+    public String collectInput(){
         PlayerFactory playerFactory = new PlayerFactory();
         Scanner scn = new Scanner(System.in);
         for(int i = 0;i<11;i++){
@@ -18,5 +18,6 @@ public class PlayerTypeInput implements InputInterface{
             String PlayerType = scn.nextLine();
             team.setPlayers(i,playerFactory.getPlayer(PlayerType));
         }
+        return "";
     }
 }

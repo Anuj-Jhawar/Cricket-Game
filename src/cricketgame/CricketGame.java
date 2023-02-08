@@ -2,7 +2,9 @@ package cricketgame;
 
 import input.FormatInput;
 import input.InputInterface;
+import input.TeamNameInput;
 import input.VenueInput;
+import storeteam.TeamMap;
 
 public class CricketGame {
     private final Team team1;
@@ -18,10 +20,21 @@ public class CricketGame {
         InputInterface TakeVenueInput = new VenueInput(this);
         TakeVenueInput.collectInput();
         TakeFormatInput.collectInput();
-        team1 = new Team();
-        team1.updateNumberOfEachPlayers();
-        team2 = new Team();
-        team2.updateNumberOfEachPlayers();
+        InputInterface TakeTeamNameInput = new TeamNameInput();
+        String TeamName = TakeTeamNameInput.collectInput();
+        team1 = TeamMap.getTeamMap().getTeam(TeamName);
+        team1.setTeamName(TeamName);
+        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
+            team1.updateNumberOfEachPlayers();
+        else
+            team1.addBattingAndBowlingStatsForEachPlayer();
+        TeamName = TakeTeamNameInput.collectInput();
+        team2 = TeamMap.getTeamMap().getTeam(TeamName);
+        team2.setTeamName(TeamName);
+        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
+            team2.updateNumberOfEachPlayers();
+        else
+            team2.addBattingAndBowlingStatsForEachPlayer();
     }
 
     public Team getTeam1() {
@@ -43,7 +56,6 @@ public class CricketGame {
     public String initiateToss() {
         return tossForGame.callForToss();
     }
-
     public String getFormat() {
         return format;
     }

@@ -1,12 +1,13 @@
 package cricketgame;
 
 import scorecard.ScoreCard;
+import storeteam.TeamMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class CricketGameTest {
+public class CricketGamePlay {
     String completeToss(CricketGame game) {
         /*
             Function to complete the toss for the game.
@@ -121,7 +122,7 @@ public class CricketGameTest {
     }
     void assignWinnerOfTheGame(CricketGame Game) {
         /*
-            Function to assign Winner of the Game
+            Function to assign Winner of the Game.
         */
         if (Game.getTeam1().getRunsScored() > Game.getTeam2().getRunsScored())
             Game.setWinner(Game.getTeam1().getTeamName());
@@ -215,7 +216,10 @@ public class CricketGameTest {
         System.out.println("Others.Toss won by" + teamWhoWonTheToss);
         System.out.println(teamWhoWonTheToss + " decided to bat first");
         letsPlayTheGame(game);
-        System.out.println("Others.Team Who won the match is " + game.getWinner());
+        System.out.println("Team Who won the match is " + game.getWinner());
         printScoreCard(game);
+        TeamMap teamMap = storeteam.TeamMap.getTeamMap();
+        teamMap.addTeam(game.getTeam1().getTeamName(),game.getTeam1());
+        teamMap.addTeam(game.getTeam2().getTeamName(),game.getTeam2());
     }
 }

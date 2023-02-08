@@ -1,5 +1,5 @@
 package input;
 
 public interface InputInterface {
-    public void collectInput();
+    public String collectInput();
 }

@@ -9,7 +9,6 @@ public class TeamMap {
     private HashMap<String , Team> TeamMap = new HashMap<>();
     private TeamMap()
     {
-
     }
     public static TeamMap getTeamMap(){
         if(teamMap==null){
@@ -21,11 +20,16 @@ public class TeamMap {
         }
         return teamMap;
     }
-
     public void addTeam(String name,Team TeamToAdd){
         TeamMap.put(name,TeamToAdd);
     }
     public Team getTeam(String team){
-        return TeamMap.get(team);
+            if(TeamMap.containsKey(team))
+            return TeamMap.get(team);
+            else
+                return new Team();
+    }
+    public boolean containsTeam(String teamName){
+        return TeamMap.containsKey(teamName)==true;
     }
 }
