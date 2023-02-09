@@ -7,10 +7,10 @@ import input.VenueInput;
 import storeteam.TeamMap;
 
 public class CricketGame {
-    private final Team team1;
-    private final Team team2;
-    private final Toss tossForGame = new Toss();
-    private final Umpire umpire = new Umpire();
+    private Team team1;
+    private Team team2;
+    private Toss tossForGame = new Toss();
+    private Umpire umpire = new Umpire();
     private String venue;
     private String winner;
     private String format;
@@ -20,21 +20,6 @@ public class CricketGame {
         InputInterface TakeVenueInput = new VenueInput(this);
         TakeVenueInput.collectInput();
         TakeFormatInput.collectInput();
-        InputInterface TakeTeamNameInput = new TeamNameInput();
-        String TeamName = TakeTeamNameInput.collectInput();
-        team1 = TeamMap.getTeamMap().getTeam(TeamName);
-        team1.setTeamName(TeamName);
-        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
-            team1.updateNumberOfEachPlayers();
-        else
-            team1.addBattingAndBowlingStatsForEachPlayer();
-        TeamName = TakeTeamNameInput.collectInput();
-        team2 = TeamMap.getTeamMap().getTeam(TeamName);
-        team2.setTeamName(TeamName);
-        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
-            team2.updateNumberOfEachPlayers();
-        else
-            team2.addBattingAndBowlingStatsForEachPlayer();
     }
 
     public Team getTeam1() {
@@ -126,5 +111,20 @@ public class CricketGame {
             Returning the winner of the game.
         */
         return winner;
+    }
+    public Team setTeamForTheGame(){
+        InputInterface TakeTeamNameInput = new TeamNameInput();
+        String TeamName = TakeTeamNameInput.collectInput();
+        Team team = TeamMap.getTeamMap().getTeam(TeamName);
+        team.setTeamName(TeamName);
+        if(TeamMap.getTeamMap().containsTeam(TeamName)==false)
+            team.updateNumberOfEachPlayers();
+        else
+            team.addBattingAndBowlingStatsForEachPlayer();
+        return team;
+    }
+    public void setTeamsForTheGame(){
+        team1 = setTeamForTheGame();
+        team2 = setTeamForTheGame();
     }
 }

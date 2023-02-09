@@ -211,6 +211,7 @@ public class CricketGamePlay {
     public void play() {
         Scanner scn = new Scanner(System.in);
         CricketGame game = new CricketGame();
+        game.setTeamsForTheGame();
         System.out.println("Game Start");
         String teamWhoWonTheToss = completeToss(game);
         System.out.println("Others.Toss won by" + teamWhoWonTheToss);
