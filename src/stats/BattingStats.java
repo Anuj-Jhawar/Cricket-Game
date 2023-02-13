@@ -60,7 +60,7 @@ public class BattingStats implements Stats{
         return battingStrikeRate;
     }
     public void updateBattingStats(int runs) {
-        if (runs == -1) {
+        if (runs == 7) {
             setBallsPlayed();
             return;
         }

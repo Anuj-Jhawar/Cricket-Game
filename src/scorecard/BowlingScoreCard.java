@@ -7,10 +7,10 @@ import scorecard.InningScoreCard;
 import stats.BowlingStats;
 
 public class BowlingScoreCard implements InningScoreCard {
-    Player[] bowlingStats = new Player[11];
+    Player[] players = new Player[11];
 
     public BowlingScoreCard(Team BowlingTeam) {
-        bowlingStats = BowlingTeam.getPlayers();
+        players = BowlingTeam.getPlayers();
     }
 
     void printHeadings() {
@@ -29,7 +29,7 @@ public class BowlingScoreCard implements InningScoreCard {
             Printing the bowling part of the scorecard.
         */
         printHeadings();
-        for (Player currentBowler : bowlingStats) {
+        for (Player currentBowler : players) {
             BowlingStats bowlingStats = currentBowler.getBowlingStats();
             if (currentBowler instanceof Bowler && bowlingStats.getBallsBowled() > 0) {
                 System.out.printf("%-20s %10s %10s %5s %n", currentBowler.getName(), bowlingStats.getRunConceded(), bowlingStats.getBallsBowled(), bowlingStats.getWickets());

@@ -1,0 +1,74 @@
+package databaseadd;
+
+import cricketgame.CricketGame;
+import databasequery.FindMatchId;
+import databasequery.FindPlayerId;
+import databasequery.FindTeamId;
+import jdbc.JdbcConnection;
+import stats.BowlingStats;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class AddBowlingStatsToBowlingStatsTable implements AddToTable {
+    private BowlingStats bowlingStats;
+    private String playerName;
+    private String teamName;
+    private CricketGame game;
+    public AddBowlingStatsToBowlingStatsTable(BowlingStats bowlingStats,String playerName,String teamName,CricketGame game){
+        this.bowlingStats = bowlingStats;
+        this.playerName = playerName;
+        this.teamName = teamName;
+        this.game = game;
+    }
+    @Override
+    public void add() {
+        /*
+            First check if the stats are already present of not.
+        */
+        JdbcConnection jdbcConnection = new JdbcConnection();
+        Connection connection = jdbcConnection.getConnection();
+        FindMatchId findMatchId = new FindMatchId(game);
+        int matchId = findMatchId.find(teamName,connection);
+        FindTeamId findTeamId = new FindTeamId();
+        int teamId = findTeamId.find(teamName,connection);
+        FindPlayerId findPlayerId = new FindPlayerId();
+        int playerId = findPlayerId.find(playerName,connection);
+        if(connection!=null){
+            PreparedStatement statement;
+            try{
+                String sqlCommandToInsertBowlingStatsToBowlingStatsTable = "INSERT INTO BowlingStats (player_id, team_id, match_id, RunsConceded, BallsBalled,Wickets,Average) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                statement = connection.prepareStatement(sqlCommandToInsertBowlingStatsToBowlingStatsTable);
+                statement.setInt(1, playerId);
+                statement.setInt(2, teamId);
+                statement.setInt(3, matchId);
+                statement.setInt(4,bowlingStats.getRunConceded());
+                statement.setInt(5,bowlingStats.getBallsBowled());
+                statement.setInt(6,bowlingStats.getWickets());
+                statement.setDouble(7,0);
+                try {
+                    statement.executeUpdate();
+                }
+                catch (Exception e){
+                    System.out.println(e+"AddBowlingStatsToBowlingStatsTable");
+                    System.out.println("Query not completed.");
+                }
+            }
+            catch (Exception e){
+                System.out.println(e+"AddBowlingStatsToBowlingStatsTable");
+                System.out.println("Statement not created.");
+            }
+            finally {
+                try{
+                    //connection.close();
+                }
+                catch (Exception e){
+                    System.out.println("Connection not closed.");
+                }
+            }
+        }
+        else{
+            System.out.println("Connection not established");
+        }
+    }
+}

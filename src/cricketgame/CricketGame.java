@@ -1,5 +1,8 @@
 package cricketgame;
 
+import cricketgamecontroller.Tournament;
+import databaseupdate.battingstats.UpdateBattingStatsOfPlayer;
+import databaseupdate.bowlingstats.UpdateBowlingStatsOfPlayer;
 import input.FormatInput;
 import input.InputInterface;
 import input.TeamNameInput;
@@ -14,12 +17,14 @@ public class CricketGame {
     private String venue;
     private String winner;
     private String format;
+    private String tournamentName;
 
-    CricketGame(){
+    CricketGame(String tournamentName){
         InputInterface TakeFormatInput = new FormatInput(this);
         InputInterface TakeVenueInput = new VenueInput(this);
         TakeVenueInput.collectInput();
         TakeFormatInput.collectInput();
+        this.tournamentName = tournamentName;
     }
 
     public Team getTeam1() {
@@ -38,7 +43,7 @@ public class CricketGame {
         format = formatType;
     }
 
-    public String initiateToss() {
+    public int initiateToss() {
         return tossForGame.callForToss();
     }
     public String getFormat() {
@@ -75,14 +80,31 @@ public class CricketGame {
         }
     }
 
+    public void setTournamentName(String tournamentName) {
+        this.tournamentName = tournamentName;
+    }
+
+    public String getTournamentName(){
+        return tournamentName;
+    }
+    public int getBattingTeamIndex(){
+        return tossForGame.getBattingTeamIndex();
+    }
+    public int getBowlingTeamIndex(){
+        return tossForGame.getBowlingTeamIndex();
+    }
     public void updateBattingStatsOfBatsman(int teamIndex, int playerIndex, int runs) {
         /*
             Updating the batsman stats depending on the runs scored on the ball.
         */
-        if (teamIndex == 0) {
+        if (teamIndex == 1) {
             team1.updateBattingStatsOfPlayer(playerIndex, runs);
+            UpdateBattingStatsOfPlayer updateBattingStatsOfPlayer = new UpdateBattingStatsOfPlayer(this,team1,team1.getPlayer(playerIndex),runs);
+            updateBattingStatsOfPlayer.updateBattingStatsOfPlayer();
         } else {
             team2.updateBattingStatsOfPlayer(playerIndex, runs);
+            UpdateBattingStatsOfPlayer updateBattingStatsOfPlayer = new UpdateBattingStatsOfPlayer(this,team2,team2.getPlayer(playerIndex),runs);
+            updateBattingStatsOfPlayer.updateBattingStatsOfPlayer();
         }
     }
 
@@ -90,10 +112,14 @@ public class CricketGame {
         /*
             Updating the bowler stats depending on the outcome of the ball.
         */
-        if (teamIndex == 0) {
+        if (teamIndex == 1) {
             team2.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
+            UpdateBowlingStatsOfPlayer updateBowlingStatsOfPlayer = new UpdateBowlingStatsOfPlayer(this,team2.getPlayer(playerIndex),team2,outcomeOfTheBall);
+            updateBowlingStatsOfPlayer.updateBowlingStatsOfPlayer();
         } else {
             team1.updateBowlingStatsOfPlayer(playerIndex, outcomeOfTheBall);
+            UpdateBowlingStatsOfPlayer updateBowlingStatsOfPlayer = new UpdateBowlingStatsOfPlayer(this,team1.getPlayer(playerIndex),team1,outcomeOfTheBall);
+            updateBowlingStatsOfPlayer.updateBowlingStatsOfPlayer();
         }
     }
 
@@ -101,7 +127,7 @@ public class CricketGame {
         /*
             Returning the target set by the Batting team.
         */
-        if (index == 0)
+        if (index == 1)
             return team1.getRunsScored();
         else
             return team2.getRunsScored();

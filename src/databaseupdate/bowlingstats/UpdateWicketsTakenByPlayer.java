@@ -1,0 +1,41 @@
+package databaseupdate.bowlingstats;
+
+import cricketgame.CricketGame;
+import databasequery.FindBowlingStatsId;
+import jdbc.JdbcConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class UpdateWicketsTakenByPlayer implements UpdatePlayerBowlingStats{
+    private CricketGame game;
+    private String teamName;
+    private String playerName;
+    public UpdateWicketsTakenByPlayer(CricketGame game,String playerName,String teamName){
+        this.game = game;
+        this.playerName = playerName;
+        this.teamName = teamName;
+    }
+    @Override
+    public void update(int stats, Connection connection) {
+        FindBowlingStatsId findBowlingStatsId = new FindBowlingStatsId(game,playerName,teamName);
+        int bowlingStatsId = findBowlingStatsId.find("",connection);
+        if(connection!=null){
+            PreparedStatement statement;
+            String SqlQueryToUpdateNumberOfWicketsTaken = "UPDATE BowlingStats SET Wickets = Wickets+1 Where id = ?";
+            try{
+                statement = connection.prepareStatement(SqlQueryToUpdateNumberOfWicketsTaken);
+                statement.setInt(1,bowlingStatsId);
+                statement.executeUpdate();
+
+            }
+            catch (Exception e){
+                System.out.println("Statement not prepared.");
+                System.out.println(e);
+            }
+        }
+        else{
+            System.out.println("Connection not established.");
+        }
+    }
+}

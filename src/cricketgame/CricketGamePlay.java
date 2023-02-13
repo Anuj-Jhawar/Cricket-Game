@@ -1,5 +1,6 @@
 package cricketgame;
 
+import databaseadd.AddToDataBase;
 import scorecard.ScoreCard;
 import storeteam.TeamMap;
 
@@ -8,14 +9,15 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class CricketGamePlay {
+
     String completeToss(CricketGame game) {
         /*
             Function to complete the toss for the game.
         */
         System.out.println("Time for toss");
-        String teamWhoWonTheToss = game.initiateToss();
+        int teamWhoWonTheToss = game.initiateToss();
         String Team1 = "Team1";
-        if(teamWhoWonTheToss.equals(Team1)){
+        if(teamWhoWonTheToss==1){
             return game.getTeam1().getTeamName();
         }
         else
@@ -108,7 +110,7 @@ public class CricketGamePlay {
             Assigning Others.Bowler for the next over and making sure that bowler does not repeat.
         */
         Team currentTeam;
-        if (bowlingTeamIndex == 0)
+        if (bowlingTeamIndex == 2)
             currentTeam = game.getTeam2();
         else
             currentTeam = game.getTeam1();
@@ -139,7 +141,7 @@ public class CricketGamePlay {
             Updating the stats of batsman and bowler after every ball.
         */
         if (newBall.getOutcomeOfTheBall() == 7) {
-            game.updateBattingStatsOfBatsman(teamIndex, batsmanOnStrikeIndex, -1);
+            game.updateBattingStatsOfBatsman(teamIndex, batsmanOnStrikeIndex, 7);
         } else {
             game.updateTeamBattingStats(teamIndex, newBall.getOutcomeOfTheBall());
             game.updateBattingStatsOfBatsman(teamIndex, batsmanOnStrikeIndex, newBall.getOutcomeOfTheBall());
@@ -194,8 +196,9 @@ public class CricketGamePlay {
         int initializeNumberOfOvers = initializeNumberOfOvers(game);
         int target = -1;
         for (int i = 0; i < 2; i++) {
-            playAInning(game, target, initializeNumberOfOvers, i);
-            target = game.getScoreOfTeam(0);
+            playAInning(game, target, initializeNumberOfOvers, i==0? game.getBattingTeamIndex() : game.getBowlingTeamIndex());
+            target = game.getScoreOfTeam(game.getBattingTeamIndex());
+            System.out.println("Innings Break");
         }
         assignWinnerOfTheGame(game);
     }
@@ -208,13 +211,15 @@ public class CricketGamePlay {
         newScoreCard.printScoreCard();
     }
 
-    public void play() {
+    public void play(String tournamentName) {
         Scanner scn = new Scanner(System.in);
-        CricketGame game = new CricketGame();
+        CricketGame game = new CricketGame(tournamentName);
         game.setTeamsForTheGame();
         System.out.println("Game Start");
         String teamWhoWonTheToss = completeToss(game);
-        System.out.println("Others.Toss won by" + teamWhoWonTheToss);
+        System.out.println("Toss won by" + teamWhoWonTheToss);
+        AddToDataBase addToDataBase = new AddToDataBase(game);
+        addToDataBase.addToDataBase();
         System.out.println(teamWhoWonTheToss + " decided to bat first");
         letsPlayTheGame(game);
         System.out.println("Team Who won the match is " + game.getWinner());

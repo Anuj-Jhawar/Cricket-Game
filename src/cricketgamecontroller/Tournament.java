@@ -3,9 +3,19 @@ package cricketgamecontroller;
 import cricketgame.CricketGamePlay;
 
 public class Tournament {
-    public static void main(String[] args) {
+    String tournamentName;
+
+    public void setTournamentName(String tournamentName) {
+        this.tournamentName = tournamentName;
+    }
+
+    public String getTournamentName() {
+        return tournamentName;
+    }
+
+    public void playTournament() {
         CricketGamePlay CricketGame = new CricketGamePlay();
-        CricketGame.play();
-        CricketGame.play();
+        CricketGame.play(tournamentName);
+        //CricketGame.play(tournamentName);
     }
 }

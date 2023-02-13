@@ -6,10 +6,10 @@ import scorecard.InningScoreCard;
 import stats.BattingStats;
 
 public class BattingScoreCard implements InningScoreCard {
-    Player[] battingStats = new Player[11];
+    Player[] players;
 
     public BattingScoreCard(Team BattingTeam) {
-        battingStats = BattingTeam.getPlayers();
+        players = BattingTeam.getPlayers();
     }
 
     void printHeadings() {
@@ -30,7 +30,7 @@ public class BattingScoreCard implements InningScoreCard {
             Printing the batting part of the scorecard.
         */
         printHeadings();
-        for (Player batsman : battingStats) {
+        for (Player batsman : players) {
             BattingStats battingStats = batsman.getBattingStats();
             if (battingStats.getBallsPlayed() > 0) {
                 System.out.printf("%-20s %10s %10s %10s %10s %10.2f %n", batsman.getName(), battingStats.getScore(), battingStats.getBallsPlayed(),

@@ -1,21 +1,35 @@
 package cricketgame;
 
 public class Toss {
-    private String teamWhoWonTheToss;
-
-    String callForToss() {
+    private int teamWhoWonTheToss;
+    private int battingTeamIndex;
+    private int bowlingTeamIndex;
+    int AssignBattingTeam(){
+        double value = Math.random();
+        int tossValue = (int) (value * 2);
+        if (tossValue == 0)
+            return 1;
+        else return 2;
+    }
+    int callForToss() {
         /*
             Function which decides which team have won the toss.
         */
         double value = Math.random();
         int tossValue = (int) (value * 2);
-        if (tossValue == 0)
-            return teamWhoWonTheToss = "Team1";
-        else
-            return teamWhoWonTheToss = "Team2";
+        teamWhoWonTheToss = tossValue==0?1:2;
+        battingTeamIndex = this.AssignBattingTeam();
+        bowlingTeamIndex = battingTeamIndex==1?2:1;
+        return teamWhoWonTheToss;
     }
 
-    String getTeamWhoWonTheToss() {
+    int getTeamWhoWonTheToss() {
         return teamWhoWonTheToss;
+    }
+    int getBattingTeamIndex(){
+        return battingTeamIndex;
+    }
+    int getBowlingTeamIndex(){
+        return bowlingTeamIndex;
     }
 }
