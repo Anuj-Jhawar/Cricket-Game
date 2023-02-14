@@ -24,7 +24,7 @@ public class AddBattingStatsToBattingStatsTable implements AddToTable {
     @Override
     public void add() {
         /*
-            First check if the stats are already present of not.
+            Add BattingStats for a specific player for the current match.
         */
         JdbcConnection jdbcConnection = new JdbcConnection();
         Connection connection = jdbcConnection.getConnection();

@@ -17,6 +17,9 @@ public class AddMatchToMatchTable implements AddToTable {
     }
     @Override
     public void add() {
+        /*
+            Add Match row for the current match.
+        */
         JdbcConnection jdbc = new JdbcConnection();
         Connection connection = jdbc.getConnection();
         FindTeamId findTeamId = new FindTeamId();

@@ -60,7 +60,7 @@ public class CricketGame {
 
     public void updateTeamBattingStats(int index, int outComeOfTheBall) {
         /*
-            Updating the Others.Team Batting Stats.
+            Updating the Team Batting Stats.
         */
         if (index == 0) {
             team1.setRunsScored(outComeOfTheBall);
@@ -139,6 +139,9 @@ public class CricketGame {
         return winner;
     }
     public Team setTeamForTheGame(){
+        /*
+            Setting team for the game. If previously team played then assigning it directly.
+        */
         InputInterface TakeTeamNameInput = new TeamNameInput();
         String TeamName = TakeTeamNameInput.collectInput();
         Team team = TeamMap.getTeamMap().getTeam(TeamName);

@@ -11,6 +11,9 @@ public class TeamMap {
     {
     }
     public static TeamMap getTeamMap(){
+        /*
+            returns the teamMap.
+        */
         if(teamMap==null){
             synchronized (TeamMap.class){
                 if(teamMap==null){
@@ -24,6 +27,9 @@ public class TeamMap {
         TeamMap.put(name,TeamToAdd);
     }
     public Team getTeam(String team){
+        /*
+            returns team object depending upon the name.
+        */
             if(TeamMap.containsKey(team))
             return TeamMap.get(team);
             else

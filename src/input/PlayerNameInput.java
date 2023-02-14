@@ -10,6 +10,9 @@ public class PlayerNameInput implements InputInterface{
         this.player = Player;
     }
     public String collectInput(){
+        /*
+            Collect the input for player name.
+        */
         Scanner scn = new Scanner(System.in);
         Player.incrementPlayerCount();
         int count = Player.getPlayerCount();

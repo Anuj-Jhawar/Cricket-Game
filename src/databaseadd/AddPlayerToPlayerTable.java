@@ -16,6 +16,9 @@ public class AddPlayerToPlayerTable implements AddToTable {
     }
     @Override
     public void add() {
+        /*
+            Add Player to Players table if player not in the database.
+        */
         JdbcConnection jdbc = new JdbcConnection();
         Connection connection = jdbc.getConnection();
         FindPlayerId findPlayerId = new FindPlayerId();

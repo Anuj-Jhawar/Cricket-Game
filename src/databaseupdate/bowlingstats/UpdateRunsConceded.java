@@ -19,6 +19,9 @@ public class UpdateRunsConceded implements UpdatePlayerBowlingStats {
     }
     @Override
     public void update(int stats,Connection connection) {
+        /*
+            Update the RunsConceded by Bowler in database.
+        */
         FindBowlingStatsId findBowlingStatsId = new FindBowlingStatsId(game,playerName,teamName);
         int bowlingStatsId = findBowlingStatsId.find("",connection);
         if(connection!=null){

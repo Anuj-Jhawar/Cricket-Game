@@ -9,6 +9,9 @@ import java.sql.Statement;
 public class FindTeamId implements QueryDatabase{
     @Override
     public int find(String teamName, Connection connection) {
+        /*
+            Find and return Team id if present in the Teams table.
+        */
         if(connection!=null){
             Statement statement;
             try{

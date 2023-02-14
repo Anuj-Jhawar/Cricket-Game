@@ -8,6 +8,9 @@ import java.sql.Statement;
 public class FindPlayerId implements QueryDatabase{
     @Override
     public int find(String playerName, Connection connection) {
+        /*
+            Find and return Player id if present in the Players table.
+        */
         if(connection!=null){
             PreparedStatement statement;
             try{

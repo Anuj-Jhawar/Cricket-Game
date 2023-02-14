@@ -18,6 +18,9 @@ public class UpdateNotOutColumnInTable implements UpdatePlayerBattingStats{
     }
     @Override
     public void update(int stats, Connection connection) {
+        /*
+            Update the NotOut column if Batsman is out in database.
+        */
         FindBattingStatsId findBattingStatsId = new FindBattingStatsId(game,playerName,teamName);
         int battingStatsId = findBattingStatsId.find("",connection);
         if(connection!=null){

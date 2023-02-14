@@ -18,6 +18,9 @@ public class UpdateBallsBalled implements UpdatePlayerBowlingStats{
     }
     @Override
     public void update(int stats, Connection connection) {
+        /*
+            Update the ballsBalled by Bowler in database.
+        */
         FindBowlingStatsId findBowlingStatsId = new FindBowlingStatsId(game,playerName,teamName);
         int bowlingStatsId = findBowlingStatsId.find("",connection);
         if(connection!=null){

@@ -44,6 +44,9 @@ public class AddToDataBase {
         }
     }
     public void addToDataBase(){
+        /*
+            Add respective things to their respective databases.
+        */
         this.addTeamToTeamTable(game.getTeam1());
         this.addTeamToTeamTable(game.getTeam2());
         this.addMatchToMatchTable();

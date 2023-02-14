@@ -35,6 +35,9 @@ public class UpdateBowlingStatsOfPlayer {
         updateBowlingAverageOfPlayer.update(outcomeOfTheBall,connection);
     }
     public void updateBowlingStatsOfPlayer(){
+        /*
+            Update all the stats of Bowler in database.
+        */
         JdbcConnection jdbcConnection = new JdbcConnection();
         Connection connection = jdbcConnection.getConnection();
         this.updateBallsBalled(connection);

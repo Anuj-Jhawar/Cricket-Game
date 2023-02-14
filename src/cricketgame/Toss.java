@@ -5,6 +5,9 @@ public class Toss {
     private int battingTeamIndex;
     private int bowlingTeamIndex;
     int AssignBattingTeam(){
+        /*
+            Assigning the batting team to the game.
+        */
         double value = Math.random();
         int tossValue = (int) (value * 2);
         if (tossValue == 0)

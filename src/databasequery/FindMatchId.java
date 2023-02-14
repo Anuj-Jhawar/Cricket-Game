@@ -14,6 +14,9 @@ public class FindMatchId implements QueryDatabase{
     }
     @Override
     public int find(String queryTypeName, Connection connection) {
+        /*
+            Find and return Match id if present in the Matches table.
+        */
         int team1Id;
         int team2Id;
         FindTeamId findTeamId = new FindTeamId();

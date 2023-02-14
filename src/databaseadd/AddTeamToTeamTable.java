@@ -15,6 +15,9 @@ public class AddTeamToTeamTable implements AddToTable {
     }
     @Override
     public void add() {
+        /*
+            Add team to Teams table if team not in the database.
+        */
         JdbcConnection jdbc = new JdbcConnection();
         Connection connection = jdbc.getConnection();
         FindTeamId findTeamId = new FindTeamId();

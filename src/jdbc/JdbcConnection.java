@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 
 public class JdbcConnection {
     public Connection getConnection(){
+        /*
+            Create and returns the connection.
+        */
         Connection connection = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

@@ -18,6 +18,9 @@ public class UpdateSixesScoredByPlayer implements UpdatePlayerBattingStats{
     }
     @Override
     public void update(int stats, Connection connection) {
+        /*
+            Update the Sixes played by Batsman in database.
+        */
         FindBattingStatsId findBattingStatsId = new FindBattingStatsId(game,playerName,teamName);
         int battingStatsId = findBattingStatsId.find("",connection);
         if(connection!=null){

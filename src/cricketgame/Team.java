@@ -79,6 +79,9 @@ public class Team {
     }
 
     public void updateNumberOfEachPlayers() {
+        /*
+            Counting the number of Batsmen,Bowlers and AllRounders in the team.
+        */
         for(int i = 0;i<11;i++){
             if(players[i] instanceof Batsman){
                 this.numberOfBatsman++;
@@ -92,12 +95,21 @@ public class Team {
     }
 
     public void updateBattingStatsOfPlayer(int playerIndex, int runs){
+        /*
+            Updating the batting stats of player.
+        */
         players[playerIndex].updateBattingStats(runs);
     }
     public void updateBowlingStatsOfPlayer(int playerIndex, int outComeOfTheBall){
+        /*
+            Updating the bowling stats of player.
+        */
         players[playerIndex].updateBowlingStats(outComeOfTheBall);
     }
     public void addBattingAndBowlingStatsForEachPlayer(){
+        /*
+            Adding the batting and bowling stats objects to each player.
+        */
         for(int i = 0;i<11;i++){
             players[i].addBattingStatsObject();
             players[i].addBowlingStatsObject();

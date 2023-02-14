@@ -17,6 +17,9 @@ import java.sql.Statement;
 
 public class GetBowlingStatsFromDatabase implements GetScoreCardFromDatabase {
     Stats createBowlingStats(ResultSet resultSet){
+        /*
+            Create and return BowlingStats object from the resultSet.
+        */
         BowlingStats bowlingStats = new BowlingStats();
         try{
             bowlingStats.setBallsBowled(resultSet.getInt("BallsBalled"));
@@ -32,6 +35,9 @@ public class GetBowlingStatsFromDatabase implements GetScoreCardFromDatabase {
     }
     @Override
     public Stats getStats(CricketGame game, String teamName, String playerName) {
+        /*
+            Create and return BowlingStats object from the BowlingStats table.
+        */
         JdbcConnection jdbcConnection = new JdbcConnection();
         Connection connection = jdbcConnection.getConnection();
         FindMatchId findMatchId = new FindMatchId(game);

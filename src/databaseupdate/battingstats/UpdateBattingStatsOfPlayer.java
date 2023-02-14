@@ -43,6 +43,9 @@ public class UpdateBattingStatsOfPlayer {
         updateStrikeRateOfPlayer.update(outcomeOfTheBall, connection);
     }
     public void updateBattingStatsOfPlayer(){
+        /*
+            Update all the stats of Batsman in database.
+        */
         JdbcConnection jdbcConnection = new JdbcConnection();
         Connection connection = jdbcConnection.getConnection();
         this.updateBallsPlayed(connection);

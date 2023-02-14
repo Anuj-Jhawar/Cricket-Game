@@ -11,6 +11,9 @@ public class PlayerTypeInput implements InputInterface{
         this.team = team;
     }
     public String collectInput(){
+        /*
+            Collect the input for player type.
+        */
         PlayerFactory playerFactory = new PlayerFactory();
         Scanner scn = new Scanner(System.in);
         for(int i = 0;i<11;i++){

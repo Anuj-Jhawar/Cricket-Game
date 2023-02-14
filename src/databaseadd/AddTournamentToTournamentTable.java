@@ -13,6 +13,9 @@ public class AddTournamentToTournamentTable implements AddToTable {
     }
     @Override
     public void add() {
+        /*
+            Add tournament to Tournaments table if tournament not in the database.
+        */
         JdbcConnection jdbc = new JdbcConnection();
         Connection connection = jdbc.getConnection();
         if(connection!=null){

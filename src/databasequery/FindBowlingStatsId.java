@@ -18,6 +18,9 @@ public class FindBowlingStatsId implements QueryDatabase{
     }
     @Override
     public int find(String queryTypeName, Connection connection) {
+        /*
+            Find and return BowlingStats id if present in the BowlingStats table.
+        */
         FindMatchId findMatchId = new FindMatchId(game);
         FindTeamId findTeamId = new FindTeamId();
         FindPlayerId findPlayerId = new FindPlayerId();
