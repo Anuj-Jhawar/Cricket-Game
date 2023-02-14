@@ -39,26 +39,26 @@ public class FindBowlingStatsId implements QueryDatabase{
                     else return 0;
                 }
                 catch (Exception e){
-                    System.out.println("Query not completed.");
+                    System.out.println("Query not completed in databasequery.FindBowlingStatsId.");
                 }
 
             }
             catch (Exception e){
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databasequery.FindBowlingStatsId.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databasequery.FindBowlingStatsId.");
                 }
 
             }
 
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databasequery.FindBowlingStatsId.");
         }
         return 1;
     }

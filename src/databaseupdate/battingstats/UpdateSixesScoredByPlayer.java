@@ -31,12 +31,12 @@ public class UpdateSixesScoredByPlayer implements UpdatePlayerBattingStats{
 
             }
             catch (Exception e){
-                System.out.println("Statement not prepared.");
+                System.out.println("Statement not prepared in databaseupdate.battingstats.UpdateSixesScoredByPlayer.");
                 System.out.println(e);
             }
         }
         else{
-            System.out.println("Connection not established.");
+            System.out.println("Connection not established in databaseupdate.battingstats.UpdateSixesScoredByPlayer.");
         }
     }
 }

@@ -49,24 +49,24 @@ public class AddMatchToMatchTable implements AddToTable {
                 }
                 catch (Exception e){
                     System.out.println(e);
-                    System.out.println("Query not completed.AddMatch");
+                    System.out.println("Query not completed in databaseadd.AddMatchToMatchTable.");
                 }
             }
             catch (Exception e){
                 System.out.println(e);
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databaseadd.AddMatchToMatchTable.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databaseadd.AddMatchToMatchTable.");
                 }
             }
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databaseadd.AddMatchToMatchTable.");
         }
     }
 }

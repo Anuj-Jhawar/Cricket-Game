@@ -52,23 +52,23 @@ public class AddBattingStatsToBattingStatsTable implements AddToTable {
                     statement.executeUpdate();
                 }
                 catch (Exception e){
-                    System.out.println("Query not completed.");
+                    System.out.println("Query not completed in databaseadd.AddBattingStatsToBattingStatsTable.");
                 }
             }
             catch (Exception e){
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databaseadd.AddBattingStatsToBattingStatsTable.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databaseadd.AddBattingStatsToBattingStatsTable.");
                 }
             }
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databaseadd.AddBattingStatsToBattingStatsTable.");
         }
     }
 }

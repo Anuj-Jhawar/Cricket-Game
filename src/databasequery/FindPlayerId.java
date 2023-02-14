@@ -22,26 +22,26 @@ public class FindPlayerId implements QueryDatabase{
                 }
                 catch (Exception e){
                     System.out.println(e + "FindPlayer");
-                    System.out.println("Query not completed.");
+                    System.out.println("Query not completed in databasequery.FindPlayerId.");
                 }
 
             }
             catch (Exception e){
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databasequery.FindPlayerId.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databasequery.FindPlayerId.");
                 }
 
             }
 
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databasequery.FindPlayerId.");
         }
         return 1;
     }

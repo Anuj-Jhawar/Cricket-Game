@@ -1,15 +1,21 @@
 package scorecard;
 
+import cricketgame.CricketGame;
 import cricketgame.Team;
+import databasequery.scorecard.GetScoreCardFromDatabase;
+import databasequery.scorecard.battingscorecard.GetBattingStatsFromDatabase;
 import player.Player;
 import scorecard.InningScoreCard;
 import stats.BattingStats;
 
 public class BattingScoreCard implements InningScoreCard {
     Player[] players;
-
-    public BattingScoreCard(Team BattingTeam) {
-        players = BattingTeam.getPlayers();
+    CricketGame game;
+    Team battingTeam;
+    public BattingScoreCard(CricketGame game,Team battingTeam) {
+        this.game = game;
+        players = battingTeam.getPlayers();
+        this.battingTeam = battingTeam;
     }
 
     void printHeadings() {
@@ -31,7 +37,8 @@ public class BattingScoreCard implements InningScoreCard {
         */
         printHeadings();
         for (Player batsman : players) {
-            BattingStats battingStats = batsman.getBattingStats();
+            GetScoreCardFromDatabase getScoreCardFromDatabase = new GetBattingStatsFromDatabase();
+            BattingStats battingStats = (BattingStats) getScoreCardFromDatabase.getStats(game,battingTeam.getTeamName(),batsman.getName());
             if (battingStats.getBallsPlayed() > 0) {
                 System.out.printf("%-20s %10s %10s %10s %10s %10.2f %n", batsman.getName(), battingStats.getScore(), battingStats.getBallsPlayed(),
                         battingStats.getNumberOfFours(), battingStats.getNumberOfSixes(), battingStats.getBattingStrikeRate());

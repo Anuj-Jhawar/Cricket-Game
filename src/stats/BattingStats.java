@@ -6,34 +6,36 @@ public class BattingStats implements Stats{
         score = 0;
         ballsPlayed = 0;
         battingStrikeRate = 0;
-        battingAverage = 0;
         numberOfFours = 0;
         numberOfSixes = 0;
     }
     private int score;
     private int ballsPlayed;
     private double battingStrikeRate;
-    private double battingAverage;
     private int numberOfSixes;
     private int numberOfFours;
 
-    public void setBallsPlayed() {
-        ballsPlayed++;
+    public void setBallsPlayed(int ballsPlayed) {
+        this.ballsPlayed = ballsPlayed;
     }
 
     public void setStrikeRate() {
-        battingStrikeRate = (score * 100.0) / ballsPlayed;
+        battingStrikeRate = ballsPlayed == 0? 0 : (score * 100.0) / ballsPlayed;
     }
 
-    public void setAverage() {
-        battingAverage = score;
+    public void setNumberOfFours(int numberOfFours){
+        this.numberOfFours = numberOfFours;
+    }
+
+    public void setNumberOfSixes(int numberOfSixes) {
+        this.numberOfSixes = numberOfSixes;
     }
 
     public void setBoundaries(int runs) {
         if (runs == 4)
-            numberOfFours++;
+            setNumberOfFours(numberOfFours+1);
         else if (runs == 6)
-            numberOfSixes++;
+            setNumberOfSixes(numberOfSixes+1);
     }
 
     public int getScore() {
@@ -61,12 +63,11 @@ public class BattingStats implements Stats{
     }
     public void updateBattingStats(int runs) {
         if (runs == 7) {
-            setBallsPlayed();
+            setBallsPlayed(ballsPlayed+1);
             return;
         }
         setScore(runs);
-        setBallsPlayed();
-        setAverage();
+        setBallsPlayed(ballsPlayed+1);
         setStrikeRate();
         setBoundaries(runs);
     }

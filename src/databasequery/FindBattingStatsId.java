@@ -39,25 +39,25 @@ public class FindBattingStatsId implements QueryDatabase{
                     else return 0;
                 }
                 catch (Exception e){
-                    System.out.println("Query not completed.");
+                    System.out.println("Query not completed in databasequery.FindBattingStatsId.");
                 }
             }
             catch (Exception e){
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databasequery.FindBattingStatsId.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databasequery.FindBattingStatsId.");
                 }
 
             }
 
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databasequery.FindBattingStatsId");
         }
         return 1;
     }

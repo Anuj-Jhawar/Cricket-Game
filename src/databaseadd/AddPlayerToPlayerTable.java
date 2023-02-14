@@ -33,26 +33,26 @@ public class AddPlayerToPlayerTable implements AddToTable {
                 }
                 catch (Exception e){
                     System.out.println(e);
-                    System.out.println("Query not completed.");
+                    System.out.println("Query not completed in databaseadd.AddPlayerToPlayerTable.");
                 }
 
             }
             catch (Exception e){
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databaseadd.AddPlayerToPlayerTable.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databaseadd.AddPlayerToPlayerTable.");
                 }
 
             }
 
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databaseadd.AddPlayerToPlayerTable.");
         }
     }
 }

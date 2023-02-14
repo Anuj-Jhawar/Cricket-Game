@@ -23,27 +23,27 @@ public class FindTeamId implements QueryDatabase{
                 }
                 catch (Exception e){
                     System.out.println(e);
-                    System.out.println("Query not completed. FindTeams");
+                    System.out.println("Query not completed in databasequery.FindTeamId.");
                 }
 
             }
             catch (Exception e){
                 System.out.println(e);
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databasequery.FindTeamId.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databasequery.FindTeamId.");
                 }
 
             }
 
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databasequery.FindTeamId.");
         }
         return 1;
     }

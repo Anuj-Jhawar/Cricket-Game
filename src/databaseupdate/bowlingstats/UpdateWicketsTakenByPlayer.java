@@ -27,15 +27,14 @@ public class UpdateWicketsTakenByPlayer implements UpdatePlayerBowlingStats{
                 statement = connection.prepareStatement(SqlQueryToUpdateNumberOfWicketsTaken);
                 statement.setInt(1,bowlingStatsId);
                 statement.executeUpdate();
-
             }
             catch (Exception e){
-                System.out.println("Statement not prepared.");
+                System.out.println("Statement not prepared in databaseupdate.bowlingstats.UpdateWicketsTakenByPlayer.");
                 System.out.println(e);
             }
         }
         else{
-            System.out.println("Connection not established.");
+            System.out.println("Connection not established in databaseupdate.bowlingstats.UpdateWicketsTakenByPlayer.");
         }
     }
 }

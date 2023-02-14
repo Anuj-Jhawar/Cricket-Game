@@ -23,26 +23,26 @@ public class FindTournamentId implements QueryDatabase{
                 }
                 catch (Exception e){
                     System.out.println(e);
-                    System.out.println("Query not completed. FindTournaments");
+                    System.out.println("Query not completed in databasequery.FindTournamentId.");
                 }
 
             }
             catch (Exception e){
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databasequery.FindTournamentId.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databasequery.FindTournamentId.");
                 }
 
             }
 
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databasequery.FindTournamentId.");
         }
         return 1;
     }

@@ -21,24 +21,24 @@ public class BowlingStats implements Stats{
         bowlingStrikeRate = 0.0;
     }
 
-    public void updateBowlingAverage() {
-        bowlingAverage = (runConceded * 1.0) / (wickets);
+    public void setBowlingAverage() {
+        bowlingAverage = wickets==0? 0 : (runConceded * 1.0) / (wickets);
     }
 
-    public void updateWickets() {
-        wickets++;
+    public void setWickets(int wickets) {
+        this.wickets = wickets;
     }
 
     public void updateBowlingStrikeRate() {
         bowlingStrikeRate = (ballsBowled * 1.0) / wickets;
     }
 
-    public void updateRunsConceded(int runs) {
+    public void setRunsConceded(int runs) {
         runConceded += runs;
     }
 
-    public void updateBallsBowled() {
-        ballsBowled++;
+    public void setBallsBowled(int ballsBowled) {
+        this.ballsBowled = ballsBowled;
     }
 
     public int getRunConceded() {
@@ -57,12 +57,12 @@ public class BowlingStats implements Stats{
         /*
             Function to invoke all the batting stats of the bowler.
         */
-        updateBallsBowled();
+        setBallsBowled(ballsBowled+1);
         if (outcomeOfTheBall==7)
-            updateWickets();
+            setWickets(wickets+1);
         else
-            updateRunsConceded(outcomeOfTheBall);
-        updateBowlingAverage();
+            setRunsConceded(outcomeOfTheBall);
+        setBowlingAverage();
         updateBowlingStrikeRate();
     }
     public void updateStats(int runs){

@@ -50,25 +50,23 @@ public class AddBowlingStatsToBowlingStatsTable implements AddToTable {
                     statement.executeUpdate();
                 }
                 catch (Exception e){
-                    System.out.println(e+"AddBowlingStatsToBowlingStatsTable");
-                    System.out.println("Query not completed.");
+                    System.out.println("Query not completed in databaseadd.AddBowlingStatsToBowlingStatsTable.");
                 }
             }
             catch (Exception e){
-                System.out.println(e+"AddBowlingStatsToBowlingStatsTable");
-                System.out.println("Statement not created.");
+                System.out.println("Statement not created in databaseadd.AddBowlingStatsToBowlingStatsTable.");
             }
             finally {
                 try{
                     //connection.close();
                 }
                 catch (Exception e){
-                    System.out.println("Connection not closed.");
+                    System.out.println("Connection not closed in databaseadd.AddBowlingStatsToBowlingStatsTable.");
                 }
             }
         }
         else{
-            System.out.println("Connection not established");
+            System.out.println("Connection not established in databaseadd.AddBowlingStatsToBowlingStatsTable.");
         }
     }
 }

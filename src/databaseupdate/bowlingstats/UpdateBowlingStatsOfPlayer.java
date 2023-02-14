@@ -18,21 +18,33 @@ public class UpdateBowlingStatsOfPlayer {
         this.player = player;
         this.outcomeOfTheBall = outcomeOfTheBall;
     }
+    public void updateWicketsTakenByPlayer(Connection connection){
+        UpdateWicketsTakenByPlayer updateWicketsTakenByPlayer = new UpdateWicketsTakenByPlayer(game, player.getName(), team.getTeamName());
+        updateWicketsTakenByPlayer.update(outcomeOfTheBall, connection);
+    }
+    public void updateBallsBalled(Connection connection){
+        UpdateBallsBalled updateBallsBalled = new UpdateBallsBalled(game, player.getName(), team.getTeamName());
+        updateBallsBalled.update(outcomeOfTheBall, connection);
+    }
+    public void updateRunsConceded(Connection connection){
+        UpdateRunsConceded updateRunsConceded = new UpdateRunsConceded(game,player.getName(), team.getTeamName());
+        updateRunsConceded.update(outcomeOfTheBall,connection);
+    }
+    public void updateBowlingAverageOfPlayer(Connection connection){
+        UpdateBowlingAverageOfPlayer updateBowlingAverageOfPlayer = new UpdateBowlingAverageOfPlayer(game, player.getName(), team.getTeamName(),player.getBowlingStats().getRunConceded(),player.getBowlingStats().getWickets());
+        updateBowlingAverageOfPlayer.update(outcomeOfTheBall,connection);
+    }
     public void updateBowlingStatsOfPlayer(){
         JdbcConnection jdbcConnection = new JdbcConnection();
         Connection connection = jdbcConnection.getConnection();
-        UpdateBallsBalled updateBallsBalled = new UpdateBallsBalled(game, player.getName(), team.getTeamName());
-        updateBallsBalled.update(outcomeOfTheBall, connection);
+        this.updateBallsBalled(connection);
         if(outcomeOfTheBall==7){
-            UpdateWicketsTakenByPlayer updateWicketsTakenByPlayer = new UpdateWicketsTakenByPlayer(game, player.getName(), team.getTeamName());
-            updateWicketsTakenByPlayer.update(outcomeOfTheBall, connection);
+         this.updateWicketsTakenByPlayer(connection);
         }
         else{
-            UpdateRunsConceded updateRunsConceded = new UpdateRunsConceded(game,player.getName(), team.getTeamName());
-            updateRunsConceded.update(outcomeOfTheBall,connection);
+            this.updateRunsConceded(connection);
         }
-        UpdateBowlingAverageOfPlayer updateBowlingAverageOfPlayer = new UpdateBowlingAverageOfPlayer(game, player.getName(), team.getTeamName(),player.getBowlingStats().getRunConceded(),player.getBowlingStats().getWickets());
-        updateBowlingAverageOfPlayer.update(outcomeOfTheBall,connection);
+        this.updateBowlingAverageOfPlayer(connection);
         try{
             connection.close();
         }
